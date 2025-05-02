@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://e6etu2bjplkj"]
+
+[ext_resource type="Script" uid="uid://duvxo0c7ccmmc" path="res://Nodes/Mangers/bullet_manager.gd" id="1_3htfu"]
+
+[node name="bullet_manager" type="Node"]
+script = ExtResource("1_3htfu")

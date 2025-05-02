@@ -1,9 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddowkgi1huadv"]
+[gd_scene load_steps=5 format=3 uid="uid://ddowkgi1huadv"]
 
+[ext_resource type="PackedScene" uid="uid://bk3i1aaidrjw0" path="res://Nodes/Mangers/game_manager.tscn" id="2_7mba1"]
 [ext_resource type="PackedScene" uid="uid://dydpaa0pq14m6" path="res://Materials/PostProcessing/post_processing.tscn" id="3_soq8b"]
+[ext_resource type="PackedScene" uid="uid://dvgiyukkhh0d5" path="res://Nodes/Spawners/bullet_spawner.tscn" id="3_sppqt"]
+[ext_resource type="PackedScene" uid="uid://cj4pd0hmfyeyk" path="res://Nodes/Player/player.tscn" id="4_sppqt"]
 
-[node name="LevelTest" type="Node2D"]
+[node name="LevelTest" type="Node2D" groups=["level"]]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="post_processing" parent="." instance=ExtResource("3_soq8b")]
+visible = false
+
+[node name="game_manager" parent="." instance=ExtResource("2_7mba1")]
+
+[node name="bullet_spawner" parent="." instance=ExtResource("3_sppqt")]
+position = Vector2(-27, -50)
+
+[node name="player" parent="." instance=ExtResource("4_sppqt")]
+position = Vector2(-76, -42)
+speed = 100.0

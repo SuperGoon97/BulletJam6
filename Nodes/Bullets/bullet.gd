@@ -5,13 +5,13 @@ class_name BulletBase extends Node2D
 
 @onready var bullet_sprite: Sprite2D = $bullet_sprite
 
-var velocity:Vector2 = Vector2(1.0,0.0)
+var direction:Vector2 = Vector2(1.0,0.0)
 var active = false
 
 func _ready() -> void:
 	bullet_sprite.self_modulate = Gv.color_pallete.colors[26]
 func _process(delta: float) -> void:
-	position += (velocity * speed * delta)
+	position += (direction * speed * delta)
 
 func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	var node:Node2D = area.get_parent()
