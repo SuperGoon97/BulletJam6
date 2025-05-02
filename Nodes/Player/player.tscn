@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj4pd0hmfyeyk"]
+
+[ext_resource type="Script" uid="uid://b8rg4iphmw06q" path="res://Nodes/Player/player.gd" id="1_qlfej"]
+[ext_resource type="Texture2D" uid="uid://cpb4nuvcnm4r4" path="res://Sprites/tex_16_base.png" id="2_pie2b"]
+[ext_resource type="PackedScene" uid="uid://dvgiyukkhh0d5" path="res://Nodes/Spawners/bullet_spawner.tscn" id="3_lkjqq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sfp35"]
+
+[node name="player" type="Node2D"]
+script = ExtResource("1_qlfej")
+
+[node name="player_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_pie2b")
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="player_hitbox_shape" type="CollisionShape2D" parent="player_hitbox"]
+shape = SubResource("CircleShape2D_sfp35")
+
+[node name="bullet_spawner" parent="." instance=ExtResource("3_lkjqq")]
+
+[node name="shooting_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="shooting_timer" to="." method="_on_shooting_timer_timeout"]

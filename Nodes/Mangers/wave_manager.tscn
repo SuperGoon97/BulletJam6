@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c44ulypkt6a35"]
+
+[ext_resource type="Script" uid="uid://3f1at0k6lqlu" path="res://Nodes/Mangers/wave_manager.gd" id="1_gqslp"]
+[ext_resource type="PackedScene" uid="uid://cskochpqn2q8s" path="res://Nodes/Spawners/enemy_spawner.tscn" id="2_mrpt4"]
+
+[node name="wave_manager" type="Node2D"]
+scale = Vector2(1, 0.991434)
+script = ExtResource("1_gqslp")
+
+[node name="enemy_spawner1" parent="." instance=ExtResource("2_mrpt4")]
+position = Vector2(-400, -180)
+
+[node name="enemy_spawner2" parent="." instance=ExtResource("2_mrpt4")]
+position = Vector2(-200, -180)
+
+[node name="enemy_spawner3" parent="." instance=ExtResource("2_mrpt4")]
+position = Vector2(0, -180)
+
+[node name="enemy_spawner4" parent="." instance=ExtResource("2_mrpt4")]
+position = Vector2(200, -180)
+
+[node name="enemy_spawner5" parent="." instance=ExtResource("2_mrpt4")]
+position = Vector2(400, -180)
+
+[node name="spawn_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
