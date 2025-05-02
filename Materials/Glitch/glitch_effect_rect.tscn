@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://droidm2w1tl68"]
+
+[ext_resource type="Material" uid="uid://cfi81xn17jf4q" path="res://Materials/Glitch/ma_glitch.tres" id="1_0xry6"]
+[ext_resource type="Texture2D" uid="uid://berqryklkmkrq" path="res://Sprites/icon.svg" id="2_0y3ks"]
+
+[node name="glitch_effect" type="Sprite2D"]
+material = ExtResource("1_0xry6")
+texture = ExtResource("2_0y3ks")

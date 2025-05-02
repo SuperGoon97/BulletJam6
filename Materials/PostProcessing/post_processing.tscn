@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dydpaa0pq14m6"]
+
+[ext_resource type="Material" uid="uid://d0w8yttx3ukhu" path="res://Materials/PostProcessing/ma_post_processing.tres" id="1_jf4bu"]
+
+[node name="post_processing" type="CanvasLayer"]
+
+[node name="post_process_rect" type="ColorRect" parent="."]
+material = ExtResource("1_jf4bu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

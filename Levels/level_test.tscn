@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddowkgi1huadv"]
+
+[ext_resource type="PackedScene" uid="uid://dydpaa0pq14m6" path="res://Materials/PostProcessing/post_processing.tscn" id="3_soq8b"]
+
+[node name="LevelTest" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="post_processing" parent="." instance=ExtResource("3_soq8b")]
