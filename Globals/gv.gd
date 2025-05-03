@@ -7,6 +7,12 @@ enemy,
 ally,
 }
 
+enum BPT {
+basic,
+shotgun,
+fountain
+}
+
 var game_manager :GameManager :
 	get:
 		return game_manager

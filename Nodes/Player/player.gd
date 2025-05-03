@@ -27,7 +27,7 @@ func spacebar_handler(input:bool):
 	pass
 
 func shoot():
-	bullet_spawner.spawn_bullet(-PI/2 , 100 , Gv.team.ally)
+	#bullet_spawner.spawn_bullet(-PI/2 , speed + 100 , Gv.team.ally)
 	pass
 
 func start_shooting():
@@ -45,3 +45,6 @@ func _on_shooting_timer_timeout() -> void:
 		shoot()
 	else:
 		shooting_timer.stop()
+
+func destroy():
+	queue_free()
