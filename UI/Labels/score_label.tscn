@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvarakphxf5ng"]
+
+[ext_resource type="Theme" uid="uid://da4xj7p4hdpwv" path="res://UI/Themes/over_theme.tres" id="1_brudk"]
+[ext_resource type="Script" uid="uid://c60neba2i51n8" path="res://UI/Labels/score_label.gd" id="2_w63oi"]
+[ext_resource type="Theme" uid="uid://duivpxbtclgmu" path="res://UI/Themes/under_theme.tres" id="2_yijd1"]
+
+[node name="score_label" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("1_brudk")
+text = "SCORE 0000000"
+script = ExtResource("2_w63oi")
+
+[node name="score_label_shadow" type="Label" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 26.0
+theme = ExtResource("2_yijd1")
+text = "SCORE 0000000"

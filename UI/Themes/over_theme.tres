@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://da4xj7p4hdpwv"]
+
+[ext_resource type="FontVariation" uid="uid://d3emm3nj86qp1" path="res://Fonts/plat_over_var.tres" id="1_ycw8f"]
+
+[resource]
+default_font = ExtResource("1_ycw8f")
+default_font_size = 40

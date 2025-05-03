@@ -1,5 +1,6 @@
 class_name WaveManager extends Node2D
 signal is_ready (input:String)
+signal enemy_created(enemy:Enemy)
 
 const ENEMY = preload("res://Nodes/Enemies/enemy.tscn")
 
@@ -17,6 +18,7 @@ func spawn_at(location:int):
 	var new_enemy :Enemy = ENEMY.instantiate()
 	spawner_array[location].add_child(new_enemy)
 	new_enemy.global_position = spawner_array[location].global_position
+	enemy_created.emit(new_enemy)
 	pass
 
 func _on_spawn_timer_timeout() -> void:

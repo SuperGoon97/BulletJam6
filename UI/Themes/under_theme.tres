@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://duivpxbtclgmu"]
+
+[ext_resource type="FontVariation" uid="uid://bhvfb7bym242q" path="res://Fonts/plat_under_var.tres" id="1_aqgs7"]
+
+[resource]
+default_font = ExtResource("1_aqgs7")
+Label/colors/font_color = Color(0, 0, 0, 1)

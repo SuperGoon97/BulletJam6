@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://j8dfv4nurj05"]
+
+[ext_resource type="FontFile" uid="uid://bpiwflar6uunx" path="res://Fonts/Raw/Platinum Sign.ttf" id="1_j303b"]
+
+[resource]
+base_font = ExtResource("1_j303b")
