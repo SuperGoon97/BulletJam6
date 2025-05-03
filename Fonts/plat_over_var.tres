@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://d3emm3nj86qp1"]
+
+[ext_resource type="FontFile" uid="uid://5k5e1dnkykvw" path="res://Fonts/Raw/Platinum Sign Over.ttf" id="1_thu7g"]
+
+[resource]
+base_font = ExtResource("1_thu7g")
