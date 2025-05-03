@@ -19,9 +19,12 @@ func _on_enemy_onscreen_screen_entered() -> void:
 
 func _on_enemy_onscreen_screen_exited() -> void:
 	if active:
-		destroy_enemy_slow()
+		destroy_enemy_offscreen()
 
-func destroy_enemy_slow():
+func destroy_enemy_offscreen():
 	await get_tree().create_timer(0.5).timeout
+	queue_free()
+
+func destroy():
 	destroyed_by_player.emit(score_value)
 	queue_free()

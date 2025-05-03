@@ -3,6 +3,7 @@ signal is_ready (input:String)
 signal enemy_created(enemy:Enemy)
 
 const ENEMY = preload("res://Nodes/Enemies/enemy.tscn")
+const ENEMY_DUMB_FIRE = preload("res://Nodes/Enemies/enemy_dumb_fire.tscn")
 
 @onready var enemy_spawner_1: EnemySpawner = $enemy_spawner1
 @onready var enemy_spawner_2: EnemySpawner = $enemy_spawner2
@@ -15,7 +16,7 @@ func _ready() -> void:
 	is_ready.emit("wave_manager")
 
 func spawn_at(location:int):
-	var new_enemy :Enemy = ENEMY.instantiate()
+	var new_enemy :Enemy = ENEMY_DUMB_FIRE.instantiate()
 	spawner_array[location].add_child(new_enemy)
 	new_enemy.global_position = spawner_array[location].global_position
 	enemy_created.emit(new_enemy)

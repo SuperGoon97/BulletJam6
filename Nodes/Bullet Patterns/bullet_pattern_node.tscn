@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwt3q0k5oqiej"]
+
+[ext_resource type="Script" uid="uid://crc4elm4ufayc" path="res://Nodes/Bullet Patterns/bullet_pattern_node.gd" id="1_1qy1y"]
+
+[node name="bullet_pattern" type="Node"]
+script = ExtResource("1_1qy1y")

@@ -14,7 +14,8 @@ func _process(delta: float) -> void:
 
 func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	var node:Node2D = area.get_parent()
-	node.queue_free()
+	node.destroy()
+	destroy()
 	print(node.name)
 
 
@@ -28,4 +29,7 @@ func _on_bullet_onscreen_screen_entered() -> void:
 
 func destroy_bullet_slow():
 	await get_tree().create_timer(0.5).timeout
+	queue_free()
+
+func destroy():
 	queue_free()
