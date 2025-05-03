@@ -21,6 +21,7 @@ show_behind_parent = true
 [node name="bullet_hitbox" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
+collision_mask = 0
 
 [node name="bullet_hitbox_shape" type="CollisionShape2D" parent="bullet_hitbox"]
 shape = SubResource("CircleShape2D_ix6xb")

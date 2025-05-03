@@ -2,7 +2,6 @@ class_name BulletBase extends Node2D
 
 
 @export_range(0.0,100.0,0.1,"or_greater") var speed:float = 10.0
-
 @onready var bullet_sprite: Sprite2D = $bullet_sprite
 
 var direction:Vector2 = Vector2(1.0,0.0)
@@ -15,6 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	var node:Node2D = area.get_parent()
+	node.queue_free()
 	print(node.name)
 
 
