@@ -1,24 +1,120 @@
-[gd_scene load_steps=5 format=3 uid="uid://cj4pd0hmfyeyk"]
+[gd_scene load_steps=21 format=3 uid="uid://cj4pd0hmfyeyk"]
 
 [ext_resource type="Script" uid="uid://b8rg4iphmw06q" path="res://Nodes/Player/player.gd" id="1_qlfej"]
-[ext_resource type="Texture2D" uid="uid://cpb4nuvcnm4r4" path="res://Sprites/tex_16_base.png" id="2_pie2b"]
+[ext_resource type="Texture2D" uid="uid://mlqw0li1np0w" path="res://Sprites/PlayerShips/PlayerBlue_Frame_01_png_processed.png" id="2_q1ymb"]
+[ext_resource type="Texture2D" uid="uid://bp8gwncf01qeq" path="res://Sprites/Exhaust/Exhaust_Frame_01_png_processed.png" id="3_e0yf7"]
 [ext_resource type="PackedScene" uid="uid://dvgiyukkhh0d5" path="res://Nodes/Spawners/bullet_spawner.tscn" id="3_lkjqq"]
+[ext_resource type="PackedScene" uid="uid://cwt3q0k5oqiej" path="res://Nodes/Bullet Patterns/bullet_pattern_node.tscn" id="4_q1ymb"]
+[ext_resource type="Texture2D" uid="uid://wtj1adkn44wn" path="res://Sprites/Exhaust/Exhaust_Frame_02_png_processed.png" id="4_ripo5"]
+[ext_resource type="Texture2D" uid="uid://q2hxg40vc1wq" path="res://Sprites/Exhaust/Exhaust_Frame_04_png_processed.png" id="5_7hu6s"]
+[ext_resource type="Texture2D" uid="uid://bqd2600mo56bg" path="res://Sprites/Exhaust/Exhaust_Frame_05_png_processed.png" id="6_50h10"]
+[ext_resource type="Texture2D" uid="uid://b4j0rpme0dewr" path="res://Sprites/Explosions/Explosion01_Frame_01_png_processed.png" id="9_6gkbq"]
+[ext_resource type="Texture2D" uid="uid://b1eaydmd0o28e" path="res://Sprites/Explosions/Explosion01_Frame_02_png_processed.png" id="10_oh6yy"]
+[ext_resource type="Texture2D" uid="uid://c222w2ssvo05n" path="res://Sprites/Explosions/Explosion01_Frame_03_png_processed.png" id="11_jexjf"]
+[ext_resource type="Texture2D" uid="uid://cyvere1pjarm7" path="res://Sprites/Explosions/Explosion01_Frame_04_png_processed.png" id="12_mrjgt"]
+[ext_resource type="Texture2D" uid="uid://e0xj3ekpkniq" path="res://Sprites/Explosions/Explosion01_Frame_05_png_processed.png" id="13_3jhvm"]
+[ext_resource type="Texture2D" uid="uid://bbp7dy7bd6ctb" path="res://Sprites/Explosions/Explosion01_Frame_06_png_processed.png" id="14_ncvkw"]
+[ext_resource type="Texture2D" uid="uid://cfcryuadpsre" path="res://Sprites/Explosions/Explosion01_Frame_07_png_processed.png" id="15_08mni"]
+[ext_resource type="Texture2D" uid="uid://dswhjedkxgufr" path="res://Sprites/Explosions/Explosion01_Frame_08_png_processed.png" id="16_fetqx"]
+[ext_resource type="Texture2D" uid="uid://dfc4ugbu654rb" path="res://Sprites/Explosions/Explosion01_Frame_09_png_processed.png" id="17_jospr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y4jjx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_e0yf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ripo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7hu6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_50h10")
+}],
+"loop": true,
+"name": &"Burn",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sfp35"]
+radius = 7.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nussk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_6gkbq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_oh6yy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jexjf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mrjgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3jhvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ncvkw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_08mni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_fetqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_jospr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}]
 
 [node name="player" type="Node2D"]
 script = ExtResource("1_qlfej")
+speed = 100.0
 
 [node name="player_sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_pie2b")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_q1ymb")
+
+[node name="thruster_sprite1" type="AnimatedSprite2D" parent="player_sprite"]
+position = Vector2(-3.33333, 30)
+sprite_frames = SubResource("SpriteFrames_y4jjx")
+animation = &"Burn"
+frame_progress = 0.194507
+
+[node name="thruster_sprite2" type="AnimatedSprite2D" parent="player_sprite"]
+position = Vector2(3.33333, 30)
+sprite_frames = SubResource("SpriteFrames_y4jjx")
+animation = &"Burn"
+frame_progress = 0.0494386
+flip_h = true
 
 [node name="player_hitbox" type="Area2D" parent="."]
+position = Vector2(1, 3)
 
 [node name="player_hitbox_shape" type="CollisionShape2D" parent="player_hitbox"]
+position = Vector2(-1, -3)
 shape = SubResource("CircleShape2D_sfp35")
 
 [node name="bullet_spawner" parent="." instance=ExtResource("3_lkjqq")]
+position = Vector2(0, -11)
 
 [node name="shooting_timer" type="Timer" parent="."]
 
+[node name="bullet_pattern" parent="." instance=ExtResource("4_q1ymb")]
+bullet_pattern_type = 1
+
+[node name="player_death_animation" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_nussk")
+
+[connection signal="recieved_damage" from="." to="." method="_on_recieved_damage"]
 [connection signal="timeout" from="shooting_timer" to="." method="_on_shooting_timer_timeout"]

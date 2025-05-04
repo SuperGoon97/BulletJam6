@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbtsxruwrekgo"]
+
+[ext_resource type="PackedScene" uid="uid://cr0jqavpandfy" path="res://Nodes/Enemies/enemy.tscn" id="1_vjpdr"]
+[ext_resource type="Script" uid="uid://cb6m7uele1iuf" path="res://Nodes/Enemies/enemy_shotgun.gd" id="2_47ita"]
+[ext_resource type="PackedScene" uid="uid://dvgiyukkhh0d5" path="res://Nodes/Spawners/bullet_spawner.tscn" id="3_7i6u5"]
+[ext_resource type="PackedScene" uid="uid://cwt3q0k5oqiej" path="res://Nodes/Bullet Patterns/bullet_pattern_node.tscn" id="4_14n8g"]
+
+[node name="enemy" instance=ExtResource("1_vjpdr")]
+script = ExtResource("2_47ita")
+speed = 50.0
+
+[node name="bullet_spawner" parent="." index="3" instance=ExtResource("3_7i6u5")]
+position = Vector2(0, 7)
+
+[node name="bullet_pattern_node" parent="." index="4" instance=ExtResource("4_14n8g")]
+bullet_pattern_type = 1
+
+[node name="shooting_timer" type="Timer" parent="." index="5"]
+
+[connection signal="timeout" from="shooting_timer" to="." method="_on_shooting_timer_timeout"]

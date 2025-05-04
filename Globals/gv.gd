@@ -13,6 +13,13 @@ shotgun,
 fountain
 }
 
+enum ET {
+SIMPLE,
+SHOOTER,
+SHOTGUN,
+STRAFER
+}
+
 var game_manager :GameManager :
 	get:
 		return game_manager

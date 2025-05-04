@@ -4,6 +4,8 @@ signal destroyed_by_player(score_to_give:int)
 
 @export_range(0.0,100.0,0.1,"or_greater") var speed:float = 10.0
 @export var score_value:int = 10
+@onready var enemy_sprite: Sprite2D = $enemy_sprite
+@onready var enemy_explodes: AnimatedSprite2D = $enemy_explodes
 
 var direction:Vector2 = Vector2(0.0,1.0)
 var active = true
@@ -25,6 +27,13 @@ func destroy_enemy_offscreen():
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
 
+func damage():
+	destroy()
+
 func destroy():
 	destroyed_by_player.emit(score_value)
+	enemy_explodes.play()
+	enemy_explodes.show()
+	enemy_sprite.hide()
+	await enemy_explodes.animation_finished
 	queue_free()
