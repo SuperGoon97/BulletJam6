@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bloyexsfxaxsy"]
+
+[ext_resource type="Texture2D" uid="uid://f5fy0o8gheo3" path="res://Sprites/HPBar/BarV5_Bar.png" id="1_nvpyo"]
+[ext_resource type="Script" uid="uid://bbm1lhetwl64a" path="res://UI/HealthBar/health_bar.gd" id="1_reaig"]
+[ext_resource type="Texture2D" uid="uid://y3fpjgcqwgi0" path="res://Sprites/HPBar/BarV5_ProgressBar.png" id="2_reaig"]
+[ext_resource type="Texture2D" uid="uid://clhk5sx2xgx4c" path="res://Sprites/HPBar/BarV5_ProgressBarBorder.png" id="3_u8u3l"]
+
+[node name="health_bar" type="Node2D"]
+script = ExtResource("1_reaig")
+
+[node name="health_bar_empty" type="Sprite2D" parent="."]
+position = Vector2(-148, 23.5)
+texture = ExtResource("1_nvpyo")
+
+[node name="health_bar_full_anchor" type="Node2D" parent="."]
+position = Vector2(-284, 23.5)
+
+[node name="health_bar_full" type="Sprite2D" parent="health_bar_full_anchor"]
+position = Vector2(136, 0)
+texture = ExtResource("2_reaig")
+
+[node name="health_bar_frame" type="Sprite2D" parent="."]
+position = Vector2(-148, 23.5)
+texture = ExtResource("3_u8u3l")

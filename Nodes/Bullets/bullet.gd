@@ -8,16 +8,16 @@ var direction:Vector2 = Vector2(1.0,0.0)
 var active = false
 
 func _ready() -> void:
-	bullet_sprite.self_modulate = Gv.color_pallete.colors[26]
+	#bullet_sprite.self_modulate = Gv.color_pallete.colors[26]
+	pass
 func _process(delta: float) -> void:
 	position += (direction * speed * delta)
 
 func _on_bullet_hitbox_area_entered(area: Area2D) -> void:
 	var node:Node2D = area.get_parent()
-	node.destroy()
+	node.damage()
 	destroy()
 	print(node.name)
-
 
 func _on_bullet_onscreen_screen_exited() -> void:
 	if active:
