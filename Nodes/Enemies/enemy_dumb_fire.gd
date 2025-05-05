@@ -6,12 +6,11 @@ class_name EnemyDumbFire extends Enemy
 @onready var bullet_pattern :BulletPattern = bullet_pattern_node.bullet_pattern
 
 func _ready() -> void:
-	shooting_timer.start(6)
-	shoot()
+	shooting_timer.start(2)
 
 func shoot():
 	for n in bullet_pattern.number_of_shots:
-		bullet_spawner.spawn_bullet(bullet_pattern.speed , Gv.team.enemy , direction + Vector2(0.0 , 1.0) , 4 , bullet_pattern.angle_sequence[n])
+		bullet_spawner.spawn_bullet(bullet_pattern.speed , Gv.team.enemy ,  Vector2(0.0 , 1.0) , 4 , bullet_pattern.angle_sequence[n])
 		await get_tree().create_timer(bullet_pattern.time_between_shots).timeout
 
 func _on_shooting_timer_timeout() -> void:

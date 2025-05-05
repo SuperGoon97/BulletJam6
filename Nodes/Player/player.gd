@@ -8,11 +8,13 @@ signal recieved_damage(current_health:int)
 
 @export_range(0.0,100.0,0.1,"or_greater") var speed:float = 10.0
 @onready var bullet_spawner: BulletSpawner = $bullet_spawner
-@onready var shooting_timer: Timer = $shooting_timer
+@onready var shooting_timer: Timer = $bullet_spawner/shooting_timer
 @onready var player_sprite: Sprite2D = $player_sprite
 @onready var thruster_sprite_1: AnimatedSprite2D = $player_sprite/thruster_sprite1
 @onready var thruster_sprite_2: AnimatedSprite2D = $player_sprite/thruster_sprite2
-@onready var player_death_animation: AnimatedSprite2D = $player_death_animation
+@onready var player_death_animation: AnimatedSprite2D = $player_sprite/player_death_animation
+@onready var player_weapon_sound: AudioStreamPlayer = $bullet_spawner/player_weapon_sound
+
 
 var direction:Vector2 = Vector2(0.0,0.0)
 var shooting :bool = false
@@ -49,6 +51,7 @@ func spacebar_handler(input:bool):
 
 func shoot():
 	bullet_spawner.spawn_bullet(1000 , Gv.team.ally , Vector2(0.0 , -1.0) , 21)
+	player_weapon_sound.play()
 	pass
 
 func start_shooting():
@@ -68,10 +71,11 @@ func _on_shooting_timer_timeout() -> void:
 		shooting_timer.stop()
 
 func damage():
-	health = health - 1
-	recieved_damage.emit(health)
-	if health == 0:
-		destroy()
+	if health > 0:
+		health = health - 1
+		recieved_damage.emit(health)
+		if health == 0:
+			destroy()
 
 func destroy():
 	player_death_animation.show()
