@@ -6,7 +6,6 @@ class_name EnemyShotgun extends Enemy
 @onready var bullet_pattern :BulletPattern = bullet_pattern_node.bullet_pattern
 
 func _ready() -> void:
-	shoot()
 	shooting_timer.start(6)
 
 func shoot():

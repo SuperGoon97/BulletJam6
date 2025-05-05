@@ -18,7 +18,5 @@ func spawn_bullet(speed:float , team:Gv.team , direction :Vector2 , colour:int ,
 	new_bullet.speed = speed
 	new_bullet.global_position = global_position
 	new_bullet_sprite.self_modulate = Gv.color_pallete.colors[colour]
-	
 	new_bullet_hitbox.set_collision_mask_value(team + 1 , true)
 	get_tree().get_first_node_in_group("level").add_child(new_bullet)
-	

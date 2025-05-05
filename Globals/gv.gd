@@ -10,14 +10,16 @@ ally,
 enum BPT {
 basic,
 shotgun,
-fountain
+fountain,
+twin
 }
 
 enum ET {
 SIMPLE,
 SHOOTER,
 SHOTGUN,
-STRAFER
+STRAFER,
+BASIC_TWIN
 }
 
 var game_manager :GameManager :
