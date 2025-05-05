@@ -29,16 +29,14 @@ func create_managers():
 	bullet_manager = BULLET_MANAGER.instantiate()
 	bullet_manager.is_ready.connect(manager_ready)
 	add_child(bullet_manager)
+	wave_manager = WAVE_MANAGER.instantiate()
+	wave_manager.is_ready.connect(manager_ready)
+	wave_manager.enemy_created.connect(bind_to_enemy_death)
+	add_child(wave_manager)
 	ui_manager = UI_MANAGER.instantiate()
 	ui_manager.is_ready.connect(manager_ready)
 	score_changed.connect(ui_manager.update_score_label)
 	add_child(ui_manager)
-	wave_manager = WAVE_MANAGER.instantiate()
-	wave_manager.is_ready.connect(manager_ready)
-	wave_manager.enemy_created.connect(bind_to_enemy_death)
-	
-	add_child(wave_manager)
-	pass
 
 func manager_ready (input:String):
 	manager_dict[input] = true

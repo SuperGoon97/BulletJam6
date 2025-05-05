@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func shoot():
 	for n in bullet_pattern.number_of_shots:
-		bullet_spawner.spawn_bullet(bullet_pattern.speed , Gv.team.enemy , direction , 6 , bullet_pattern.angle_sequence[n])
+		bullet_spawner.spawn_bullet(bullet_pattern.speed , Gv.team.enemy , direction , 5 , bullet_pattern.angle_sequence[n])
 		await get_tree().create_timer(bullet_pattern.time_between_shots).timeout
 
 func _on_shooting_timer_timeout() -> void:

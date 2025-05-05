@@ -21,6 +21,11 @@ Gf="*res://Globals/gf.gd"
 Gv="*res://Globals/gv.gd"
 Gpi="*res://Globals/gpi.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [global_group]
 
 bullet=""

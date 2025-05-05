@@ -6,6 +6,7 @@ signal wave_spawn_finished()
 const WaveBasics = preload("res://Nodes/Waves/wave_basics.gd")
 const WaveStrafers = preload("res://Nodes/Waves/wave_strafers.gd")
 const WaveDiagonals = preload("res://Nodes/Waves/wave_diagonals.gd")
+const BOSS = preload("res://Nodes/Bosses/boss.tscn")
 
 @onready var enemy_spawner_0: EnemySpawner = $enemy_spawner0
 @onready var enemy_spawner_1: EnemySpawner = $enemy_spawner1
@@ -22,6 +23,7 @@ const WaveDiagonals = preload("res://Nodes/Waves/wave_diagonals.gd")
 enemy_spawner_4 , enemy_spawner_5 , enemy_spawner_6 , enemy_spawner_7 , enemy_spawner_8 , enemy_spawner_9 , enemy_spawner_10]
 
 func _ready() -> void:
+	#spawn_boss(BOSS)
 	run_waves()
 	is_ready.emit("wave_manager")
 
@@ -47,3 +49,9 @@ func run_waves():
 	await get_tree().create_timer(3.0).timeout
 	spawn_wave(WaveDiagonals)
 	await wave_spawn_finished
+
+func spawn_boss(boss:PackedScene):
+	var new_boss :Boss = boss.instantiate()
+	new_boss.position = new_boss.spawn_pos
+	add_child(new_boss)
+	print ("Boss Spanwed")
