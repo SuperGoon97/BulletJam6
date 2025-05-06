@@ -28,9 +28,9 @@ const BOSS = preload("res://Nodes/Bosses/boss.tscn")
 enemy_spawner_4 , enemy_spawner_5 , enemy_spawner_6 , enemy_spawner_7 , enemy_spawner_8 , enemy_spawner_9 , enemy_spawner_10]
 
 func _ready() -> void:
-	#spawn_boss(BOSS)
+	spawn_boss(BOSS)
 	is_ready.emit("wave_manager")
-	run_waves()
+	#run_waves()
 
 func spawn_at(location:int , speed:float , direction:Vector2 , type:Gv.ET , score):
 	var new_enemy :Enemy
