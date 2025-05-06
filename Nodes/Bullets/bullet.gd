@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 func set_colors(gradient:GradientTexture1D):
 	bullet_sprite.self_modulate = gradient.gradient.sample(0.0) * 2.0
 	bullet_trail_particle.set_bullet_trail_colors(gradient)
+	bullet_trail_particle.set_bullet_trail_scale(scale.x)
 	bullet_trail_particle.set_bullet_trail_length(speed)
 
 func _on_bullet_hitbox_area_entered(area: Area2D) -> void:

@@ -15,6 +15,13 @@ func set_bullet_trail_length(speed:float):
 	amount = base_amount * (speed/150.0)
 	lifetime = clampf((base_lifetime * (150.0/speed)),0.1,0.5)
 	bullet_trail_dust.lifetime = lifetime * 1.1
-	scale_curve_y = scale_curve_y.duplicate()
 	for n in scale_curve_y.point_count:
 		scale_curve_y.set_point_value(n,scale_curve_y.get_point_position(n).y+speed_scale)
+
+func set_bullet_trail_scale(pscale:float):
+	scale_curve_y = scale_curve_y.duplicate()
+	scale_curve_x = scale_curve_x.duplicate()
+	for n in scale_curve_y.point_count:
+		scale_curve_y.set_point_value(n,scale_curve_y.get_point_position(n).y+pscale)
+		scale_curve_x.set_point_value(n,scale_curve_x.get_point_position(n).y+pscale)
+	pass

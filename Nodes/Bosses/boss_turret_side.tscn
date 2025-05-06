@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk3stn3bvlhbi"]
+
+[ext_resource type="Script" uid="uid://kjutndy7ga2u" path="res://Nodes/Bosses/boss_turret_side.gd" id="1_vsvdf"]
+[ext_resource type="Texture2D" uid="uid://1dlq85d7cm71" path="res://Sprites/GunTurrets/GunTurretMount_png_processed.png" id="2_kw2q4"]
+[ext_resource type="Texture2D" uid="uid://byq0kipyckc2r" path="res://Sprites/GunTurrets/GunTurret_ExampleGun_png_processed.png" id="3_khsql"]
+[ext_resource type="Texture2D" uid="uid://r5xuc5s5uli2" path="res://Sprites/GunTurrets/GunTurret_Red_png_processed.png" id="4_hpd6d"]
+[ext_resource type="PackedScene" uid="uid://dvgiyukkhh0d5" path="res://Nodes/Spawners/bullet_spawner.tscn" id="5_o8mgu"]
+[ext_resource type="Script" uid="uid://crc4elm4ufayc" path="res://Nodes/Bullet Patterns/bullet_pattern_node.gd" id="6_h3kaj"]
+
+[node name="boss_turret_1" type="Node2D"]
+script = ExtResource("1_vsvdf")
+metadata/_custom_type_script = "uid://gwo87yhsyqli"
+
+[node name="boss_turret_turret" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_kw2q4")
+
+[node name="boss_turret_barrel" type="Sprite2D" parent="."]
+position = Vector2(0, 20)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_khsql")
+
+[node name="boss_turret_body" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_hpd6d")
+
+[node name="bullet_spawner" parent="." instance=ExtResource("5_o8mgu")]
+position = Vector2(0, 33)
+scale = Vector2(0.75, 0.75)
+
+[node name="bullet_pattern_node" type="Node" parent="."]
+script = ExtResource("6_h3kaj")
+metadata/_custom_type_script = "uid://crc4elm4ufayc"
+
+[node name="shooting_timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="shooting_timer" to="." method="_on_shooting_timer_timeout"]
