@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk3stn3bvlhbi"]
+[gd_scene load_steps=22 format=3 uid="uid://dk3stn3bvlhbi"]
 
 [ext_resource type="Script" uid="uid://kjutndy7ga2u" path="res://Nodes/Bosses/boss_turret_side.gd" id="1_vsvdf"]
 [ext_resource type="Texture2D" uid="uid://1dlq85d7cm71" path="res://Sprites/GunTurrets/GunTurretMount_png_processed.png" id="2_kw2q4"]
@@ -6,21 +6,121 @@
 [ext_resource type="Texture2D" uid="uid://r5xuc5s5uli2" path="res://Sprites/GunTurrets/GunTurret_Red_png_processed.png" id="4_hpd6d"]
 [ext_resource type="PackedScene" uid="uid://dvgiyukkhh0d5" path="res://Nodes/Spawners/bullet_spawner.tscn" id="5_o8mgu"]
 [ext_resource type="Script" uid="uid://crc4elm4ufayc" path="res://Nodes/Bullet Patterns/bullet_pattern_node.gd" id="6_h3kaj"]
+[ext_resource type="Texture2D" uid="uid://c5q2o3xwc0ljm" path="res://Sprites/Explosions/Explosion02_Frame_01_png_processed.png" id="7_6butk"]
+[ext_resource type="Texture2D" uid="uid://xx7hh71c2cju" path="res://Sprites/Explosions/Explosion02_Frame_02_png_processed.png" id="8_2emdy"]
+[ext_resource type="Texture2D" uid="uid://bxjt1vrtrvaeb" path="res://Sprites/Explosions/Explosion02_Frame_03_png_processed.png" id="9_mpblg"]
+[ext_resource type="Texture2D" uid="uid://02r6aabd7wcd" path="res://Sprites/Explosions/Explosion02_Frame_04_png_processed.png" id="10_fkhx4"]
+[ext_resource type="Texture2D" uid="uid://bsj6e2qowdjoy" path="res://Sprites/Explosions/Explosion02_Frame_05_png_processed.png" id="11_iu20t"]
+[ext_resource type="Texture2D" uid="uid://bndpkyvfgk3tq" path="res://Sprites/Explosions/Explosion02_Frame_06_png_processed.png" id="12_jss4a"]
+[ext_resource type="Texture2D" uid="uid://bufdy7hmdw4b2" path="res://Sprites/Explosions/Explosion02_Frame_07_png_processed.png" id="13_fjhxl"]
+[ext_resource type="Texture2D" uid="uid://d283ldhu5qjpk" path="res://Sprites/Explosions/Explosion02_Frame_08_png_processed.png" id="14_ibj1y"]
+[ext_resource type="Texture2D" uid="uid://cr7iyi6oyklxn" path="res://Sprites/Explosions/Explosion02_Frame_09_png_processed.png" id="15_lgkw7"]
+[ext_resource type="AudioStream" uid="uid://s6f4le1tqdsh" path="res://Sound Effects/Explosion Medium 2-1.wav" id="16_gdhrp"]
 
-[node name="boss_turret_1" type="Node2D"]
+[sub_resource type="Animation" id="Animation_vsvdf"]
+resource_name = "damaged"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("boss_sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.194376, 0.144153, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kw2q4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("boss_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_khsql"]
+_data = {
+&"RESET": SubResource("Animation_kw2q4"),
+&"damaged": SubResource("Animation_vsvdf")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vsvdf"]
+radius = 24.0832
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ucip0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_6butk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2emdy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mpblg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_fkhx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_iu20t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_jss4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fjhxl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ibj1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_lgkw7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="boss_turret_side" type="Node2D"]
 script = ExtResource("1_vsvdf")
 metadata/_custom_type_script = "uid://gwo87yhsyqli"
 
-[node name="boss_turret_turret" type="Sprite2D" parent="."]
+[node name="boss_sprite" type="Sprite2D" parent="."]
+position = Vector2(2, 0)
+
+[node name="boss_turret_turret" type="Sprite2D" parent="boss_sprite"]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_kw2q4")
 
-[node name="boss_turret_barrel" type="Sprite2D" parent="."]
+[node name="boss_turret_barrel" type="Sprite2D" parent="boss_sprite"]
 position = Vector2(0, 20)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_khsql")
 
-[node name="boss_turret_body" type="Sprite2D" parent="."]
+[node name="boss_turret_body" type="Sprite2D" parent="boss_sprite"]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_hpd6d")
 
@@ -35,5 +135,28 @@ metadata/_custom_type_script = "uid://crc4elm4ufayc"
 [node name="shooting_timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="boss_turret_animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_khsql")
+}
+
+[node name="boss_hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="boss_hitbox_shape" type="CollisionShape2D" parent="boss_hitbox"]
+shape = SubResource("CircleShape2D_vsvdf")
+
+[node name="turret_explodes" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_ucip0")
+frame = 8
+frame_progress = 1.0
+
+[node name="turret_death_sound" type="AudioStreamPlayer" parent="turret_explodes"]
+stream = ExtResource("16_gdhrp")
+volume_db = -6.0
 
 [connection signal="timeout" from="shooting_timer" to="." method="_on_shooting_timer_timeout"]

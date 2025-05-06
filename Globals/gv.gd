@@ -11,7 +11,8 @@ enum BPT {
 basic,
 shotgun,
 fountain,
-twin
+twin,
+circle
 }
 
 enum ET {

@@ -16,3 +16,5 @@ func update_bullet_pattern():
 			bullet_pattern = BulletPatternFountain.new()
 		Gv.BPT.twin:
 			bullet_pattern = BulletPatternTwin.new()
+		Gv.BPT.circle:
+			bullet_pattern = BulletPatternCircle.new()
