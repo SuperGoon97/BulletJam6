@@ -18,6 +18,6 @@ func create_angle_squence(inital_angle , final_angle , total_shots , ping_pong =
 		if n%2 == 0:
 			angle_sequence.append_array(temp_array)
 		else:
-			var temp_array_2 :Array = temp_array
-			temp_array_2.reverse()
-			angle_sequence.append_array(temp_array_2)
+			temp_array.reverse()
+			angle_sequence.append_array(temp_array)
+			temp_array.reverse()
