@@ -13,6 +13,7 @@ signal destroyed_by_player(score_to_give:int)
 var direction:Vector2 = Vector2(0.0,1.0)
 var active = true
 var is_alive = true
+var can_duplicate = true
 
 func _ready() -> void:
 	enemy_anim_player.play("wobble")

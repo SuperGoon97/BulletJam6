@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ddowkgi1huadv"]
+[gd_scene load_steps=11 format=3 uid="uid://ddowkgi1huadv"]
 
 [ext_resource type="Shader" uid="uid://trcb405a2kpu" path="res://Levels/scroll.gdshader" id="1_oenlu"]
 [ext_resource type="Script" uid="uid://dolp4juhxyfnk" path="res://Levels/level_test.gd" id="1_q8e8m"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cj4pd0hmfyeyk" path="res://Nodes/Player/player.tscn" id="4_sppqt"]
 [ext_resource type="PackedScene" uid="uid://dgq0ogfe3kqc1" path="res://Nodes/Cameras/main_camera.tscn" id="8_ddaal"]
 [ext_resource type="AudioStream" uid="uid://b3m5chl8gtb61" path="res://Music/4 - Celestial Echoes (Loop).wav" id="8_ku5x2"]
+[ext_resource type="PackedScene" uid="uid://br7w7yscvgl8v" path="res://Nodes/Anomalies/anomaly_duplicating.tscn" id="9_ddaal"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ku5x2"]
 shader = ExtResource("1_oenlu")
@@ -38,5 +39,8 @@ stream = ExtResource("8_ku5x2")
 autoplay = true
 
 [node name="Camera2D" parent="." instance=ExtResource("8_ddaal")]
+
+[node name="anomaly_node" parent="." instance=ExtResource("9_ddaal")]
+position = Vector2(-1, -60)
 
 [connection signal="recieved_damage" from="player" to="." method="_on_player_recieved_damage"]

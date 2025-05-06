@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://br7w7yscvgl8v"]
+
+[ext_resource type="PackedScene" uid="uid://drxelr12edwge" path="res://Nodes/Anomalies/anomaly_node.tscn" id="1_sxloj"]
+[ext_resource type="Script" uid="uid://b1i3i14rb7ksj" path="res://Nodes/Anomalies/anomaly_duplicating.gd" id="2_ww7aq"]
+
+[node name="anomaly_node" instance=ExtResource("1_sxloj")]
+script = ExtResource("2_ww7aq")
+final_scale = Vector2(10, 10)
+
+[node name="anomaly_area" parent="." index="0"]
+collision_layer = 0
+collision_mask = 14
+
+[node name="anamoly_event" parent="." index="1"]
+autostart = true

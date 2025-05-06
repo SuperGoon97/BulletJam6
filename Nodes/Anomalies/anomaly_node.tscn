@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://drxelr12edwge"]
+
+[ext_resource type="Script" uid="uid://dvgliubgyvqtv" path="res://Nodes/Anomalies/anomaly_node.gd" id="1_cknnr"]
+[ext_resource type="PackedScene" uid="uid://cf02r2xu4crfm" path="res://ParticleEffects/anomaly_particle.tscn" id="2_b4aoa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jj2gd"]
+
+[node name="anomaly_node" type="Node2D"]
+z_index = 3
+script = ExtResource("1_cknnr")
+
+[node name="anomaly_area" type="Area2D" parent="."]
+
+[node name="anomaly_shape" type="CollisionShape2D" parent="anomaly_area"]
+shape = SubResource("CircleShape2D_jj2gd")
+
+[node name="anamoly_event" type="Timer" parent="."]
+
+[node name="anomaly_particle" parent="." instance=ExtResource("2_b4aoa")]
+scale = Vector2(0.125, 0.125)
+
+[connection signal="timeout" from="anamoly_event" to="." method="_on_anamoly_event_timeout"]
