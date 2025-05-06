@@ -3,6 +3,7 @@ class_name Player extends Node2D
 const PLAYER_BLUE_FRAME_01_PNG_PROCESSED = preload("res://Sprites/PlayerShips/PlayerBlue_Frame_01_png_processed.png")
 const PLAYER_BLUE_FRAME_02_PNG_PROCESSED = preload("res://Sprites/PlayerShips/PlayerBlue_Frame_02_png_processed.png")
 const PLAYER_BLUE_FRAME_03_PNG_PROCESSED = preload("res://Sprites/PlayerShips/PlayerBlue_Frame_03_png_processed.png")
+const PLAYER_BULLET_GRADIENT = preload("res://Resources/player_bullet_gradient.tres")
 
 signal recieved_damage(current_health:int)
 
@@ -50,7 +51,7 @@ func spacebar_handler(input:bool):
 	pass
 
 func shoot():
-	bullet_spawner.spawn_bullet(1000 , Gv.team.ally , Vector2(0.0 , -1.0) , 21)
+	bullet_spawner.spawn_bullet(1000 , Gv.team.ally , Vector2(0.0 , -1.0) , PLAYER_BULLET_GRADIENT)
 	player_weapon_sound.play()
 	pass
 

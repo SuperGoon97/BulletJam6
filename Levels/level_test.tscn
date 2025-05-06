@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bk3i1aaidrjw0" path="res://Nodes/Mangers/game_manager.tscn" id="2_7mba1"]
 [ext_resource type="Texture2D" uid="uid://dqlahjkmyrhqh" path="res://Backgrounds/PixelBackgroundSeamlessVertically.png" id="2_q8e8m"]
 [ext_resource type="PackedScene" uid="uid://dydpaa0pq14m6" path="res://Materials/PostProcessing/post_processing.tscn" id="3_soq8b"]
-[ext_resource type="PackedScene" uid="uid://dvgiyukkhh0d5" path="res://Nodes/Spawners/bullet_spawner.tscn" id="3_sppqt"]
 [ext_resource type="PackedScene" uid="uid://cj4pd0hmfyeyk" path="res://Nodes/Player/player.tscn" id="4_sppqt"]
+[ext_resource type="PackedScene" uid="uid://dgq0ogfe3kqc1" path="res://Nodes/Cameras/main_camera.tscn" id="8_ddaal"]
 [ext_resource type="AudioStream" uid="uid://b3m5chl8gtb61" path="res://Music/4 - Celestial Echoes (Loop).wav" id="8_ku5x2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ku5x2"]
@@ -19,21 +19,16 @@ script = ExtResource("1_q8e8m")
 [node name="Background" type="TextureRect" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_ku5x2")
-offset_left = -603.0
-offset_top = -663.0
-offset_right = 600.0
-offset_bottom = 693.0
+offset_left = -839.0
+offset_top = -636.0
+offset_right = 364.0
+offset_bottom = 720.0
+scale = Vector2(1.36202, 0.836179)
 texture = ExtResource("2_q8e8m")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="post_processing" parent="." instance=ExtResource("3_soq8b")]
-visible = false
 
 [node name="game_manager" parent="." instance=ExtResource("2_7mba1")]
-
-[node name="bullet_spawner" parent="." instance=ExtResource("3_sppqt")]
-position = Vector2(-27, -50)
 
 [node name="player" parent="." instance=ExtResource("4_sppqt")]
 speed = 250.0
@@ -41,5 +36,7 @@ speed = 250.0
 [node name="background_music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_ku5x2")
 autoplay = true
+
+[node name="Camera2D" parent="." instance=ExtResource("8_ddaal")]
 
 [connection signal="recieved_damage" from="player" to="." method="_on_player_recieved_damage"]

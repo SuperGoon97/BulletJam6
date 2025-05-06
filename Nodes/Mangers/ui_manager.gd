@@ -9,6 +9,7 @@ var score_label:ScoreLabel
 var health_bar:HealthBar
 
 func _ready() -> void:
+	get_parent_area_size()
 	create_score_label()
 	create_health_bar()
 	is_ready.emit("ui_manager")

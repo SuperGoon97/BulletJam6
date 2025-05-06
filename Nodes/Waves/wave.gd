@@ -1,5 +1,6 @@
 class_name Wave extends GDScript
 
+var initial_delay:float = 0.0
 var number_of_spawns :int = 0
 var position_sequence :Array[int] = []
 var cooldown_sequence :Array[float] = []

@@ -9,11 +9,11 @@
 script = ExtResource("2_gbajs")
 speed = 50.0
 
-[node name="bullet_spawner" parent="." index="3" instance=ExtResource("3_cl5qq")]
+[node name="bullet_pattern_node" parent="." index="3" instance=ExtResource("4_lhdry")]
+
+[node name="shooting_timer" type="Timer" parent="." index="4"]
+
+[node name="bullet_spawner" parent="enemy_moving_components" index="2" instance=ExtResource("3_cl5qq")]
 position = Vector2(0, 7)
-
-[node name="bullet_pattern_node" parent="." index="4" instance=ExtResource("4_lhdry")]
-
-[node name="shooting_timer" type="Timer" parent="." index="5"]
 
 [connection signal="timeout" from="shooting_timer" to="." method="_on_shooting_timer_timeout"]

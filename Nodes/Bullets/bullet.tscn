@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cmtjjeif550t7" path="res://ParticleEffects/bullet_tail_particle.tscn" id="3_8ncao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ix6xb"]
-radius = 7.0
 
 [node name="bullet" type="Node2D" groups=["bullet"]]
 scale = Vector2(0.5, 0.5)
@@ -20,7 +19,6 @@ texture = ExtResource("2_fdrq6")
 show_behind_parent = true
 
 [node name="bullet_hitbox" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 0
 

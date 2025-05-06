@@ -23,7 +23,6 @@ func _ready() -> void:
 	Gv.set("game_manager" , self)
 	create_managers()
 	check_loading_state()
-	pass
 
 func create_managers():
 	bullet_manager = BULLET_MANAGER.instantiate()
@@ -36,12 +35,14 @@ func create_managers():
 	ui_manager = UI_MANAGER.instantiate()
 	ui_manager.is_ready.connect(manager_ready)
 	score_changed.connect(ui_manager.update_score_label)
-	add_child(ui_manager)
+	var camera:Camera2D = get_tree().get_first_node_in_group("camera")
+	ui_manager.scale = Vector2(1.0/camera.zoom.x,1.0/camera.zoom.y)
+	ui_manager.position = (Vector2(ui_manager.pivot_offset.x * (1 - camera.zoom.x),ui_manager.pivot_offset.y * (1 - camera.zoom.y)))
+	camera.add_child(ui_manager)
 
 func manager_ready (input:String):
 	manager_dict[input] = true
 	print(input + " is loaded")
-	pass
 
 func check_loading_state():
 	while manager_dict.values().all(Gf.equal_true) == false:

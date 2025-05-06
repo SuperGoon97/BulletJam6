@@ -9,7 +9,7 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_t8lb7"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.75), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_t8lb7"]
@@ -26,9 +26,14 @@ amount = 5
 texture = ExtResource("1_g843a")
 lifetime = 0.33
 draw_order = 1
+emission_shape = 1
+emission_sphere_radius = 2.0
 gravity = Vector2(0, 0)
 damping_curve = SubResource("Curve_6iso8")
 scale_amount_curve = SubResource("Curve_t8lb7")
+split_scale = true
+scale_curve_x = SubResource("Curve_t8lb7")
+scale_curve_y = SubResource("Curve_t8lb7")
 color_ramp = SubResource("Gradient_t8lb7")
 hue_variation_min = -1.0
 hue_variation_max = 1.0

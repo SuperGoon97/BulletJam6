@@ -1,7 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://c44ulypkt6a35"]
+[gd_scene load_steps=9 format=3 uid="uid://c44ulypkt6a35"]
 
 [ext_resource type="Script" uid="uid://3f1at0k6lqlu" path="res://Nodes/Mangers/wave_manager.gd" id="1_gqslp"]
 [ext_resource type="PackedScene" uid="uid://cskochpqn2q8s" path="res://Nodes/Spawners/enemy_spawner.tscn" id="2_mrpt4"]
+[ext_resource type="Script" uid="uid://dsln3xsmnueco" path="res://Nodes/Waves/wave_basics.gd" id="3_sppsi"]
+[ext_resource type="Script" uid="uid://dd3pa87y1p4fe" path="res://Nodes/Waves/wave_strafers.gd" id="4_6ce0h"]
+[ext_resource type="Script" uid="uid://da3ldjnr1hjjp" path="res://Nodes/Waves/wave_diagonals.gd" id="5_6ht7w"]
+
+[sub_resource type="Animation" id="Animation_20f0v"]
+resource_name = "stage_one"
+length = 30.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 9, 12),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [ExtResource("3_sppsi")],
+"method": &"spawn_wave"
+}, {
+"args": [ExtResource("4_6ce0h")],
+"method": &"spawn_wave"
+}, {
+"args": [ExtResource("5_6ht7w")],
+"method": &"spawn_wave"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6ce0h"]
+resource_name = "boss_one"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ce0h"]
+_data = {
+&"boss_one": SubResource("Animation_6ce0h"),
+&"stage_one": SubResource("Animation_20f0v")
+}
 
 [node name="wave_manager" type="Node2D"]
 scale = Vector2(1, 0.991434)
@@ -40,8 +76,9 @@ position = Vector2(600, -200)
 [node name="enemy_spawner10" parent="." instance=ExtResource("2_mrpt4")]
 position = Vector2(600, -50)
 
-[node name="spawn_timer" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
+[node name="wave_manager_anim_player" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6ce0h")
+}
 
-[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="animation_finished" from="wave_manager_anim_player" to="." method="_on_wave_manager_anim_player_animation_finished"]

@@ -1,23 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciny14fb4ohks"]
+[gd_scene load_steps=5 format=3 uid="uid://ciny14fb4ohks"]
 
 [ext_resource type="PackedScene" uid="uid://cr0jqavpandfy" path="res://Nodes/Enemies/enemy.tscn" id="1_7xby1"]
 [ext_resource type="Script" uid="uid://cr102lmjwjbok" path="res://Nodes/Enemies/enemy_strafer.gd" id="2_7xby1"]
 [ext_resource type="PackedScene" uid="uid://dvgiyukkhh0d5" path="res://Nodes/Spawners/bullet_spawner.tscn" id="3_02w6x"]
-[ext_resource type="Texture2D" uid="uid://cygl3ajyvsikc" path="res://Sprites/EnemyShips/Enemy01_Teal_Frame_1_png_processed.png" id="3_eri6h"]
 [ext_resource type="PackedScene" uid="uid://cwt3q0k5oqiej" path="res://Nodes/Bullet Patterns/bullet_pattern_node.tscn" id="4_8ba86"]
 
 [node name="enemy" instance=ExtResource("1_7xby1")]
 script = ExtResource("2_7xby1")
 speed = 10.0
 
-[node name="enemy_sprite" parent="." index="0"]
-texture = ExtResource("3_eri6h")
+[node name="bullet_pattern_node" parent="." index="3" instance=ExtResource("4_8ba86")]
 
-[node name="bullet_spawner" parent="." index="3" instance=ExtResource("3_02w6x")]
+[node name="shooting_timer" type="Timer" parent="." index="4"]
+
+[node name="bullet_spawner" parent="enemy_moving_components" index="2" instance=ExtResource("3_02w6x")]
 position = Vector2(0, 7)
-
-[node name="bullet_pattern_node" parent="." index="4" instance=ExtResource("4_8ba86")]
-
-[node name="shooting_timer" type="Timer" parent="." index="5"]
 
 [connection signal="timeout" from="shooting_timer" to="." method="_on_shooting_timer_timeout"]
