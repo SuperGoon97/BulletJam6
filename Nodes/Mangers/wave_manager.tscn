@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://dd3pa87y1p4fe" path="res://Nodes/Waves/wave_strafers.gd" id="4_6ce0h"]
 [ext_resource type="Script" uid="uid://da3ldjnr1hjjp" path="res://Nodes/Waves/wave_diagonals.gd" id="5_6ht7w"]
 
+[sub_resource type="Animation" id="Animation_6ce0h"]
+resource_name = "boss_one"
+
 [sub_resource type="Animation" id="Animation_20f0v"]
 resource_name = "stage_one"
 length = 30.0
@@ -29,9 +32,6 @@ tracks/0/keys = {
 "method": &"spawn_wave"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_6ce0h"]
-resource_name = "boss_one"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ce0h"]
 _data = {

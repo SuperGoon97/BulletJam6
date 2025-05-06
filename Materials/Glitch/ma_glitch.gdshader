@@ -50,5 +50,6 @@ void fragment( )
 	,	textureLod( screen_texture, fixed_uv + vec2( -shake_color_rate, 0.0 ), 0.0 ).b
 	,	enable_shift
 	);
-	COLOR = pixel_color;
+	float mask = ceil(COLOR.r);
+	COLOR = pixel_color * mask;
 }

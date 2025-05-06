@@ -13,5 +13,6 @@ func spawn_bullet(speed:float , team:Gv.team , direction :Vector2 , color:Gradie
 	new_bullet.global_position = global_position
 	new_bullet.call_deferred("set_colors",color)
 	new_bullet_hitbox.set_collision_mask_value(team + 1 , true)
+	new_bullet_hitbox.set_collision_layer_value(team + 3 , true)
 	new_bullet.scale = Vector2(size*base_bullet_scale , size*base_bullet_scale)
 	get_tree().get_first_node_in_group("level").add_child(new_bullet)

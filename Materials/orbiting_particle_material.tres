@@ -1,0 +1,36 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=7 format=3 uid="uid://farcej2vocsk"]
+
+[sub_resource type="Curve" id="Curve_xtra8"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, -2), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cy0hq"]
+curve = SubResource("Curve_xtra8")
+
+[sub_resource type="Curve" id="Curve_ufjsk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tegxd"]
+curve = SubResource("Curve_ufjsk")
+
+[sub_resource type="Curve" id="Curve_f1gn3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vjuj2"]
+curve = SubResource("Curve_f1gn3")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 80.0
+orbit_velocity_min = 0.0100001
+orbit_velocity_max = 0.0200001
+orbit_velocity_curve = SubResource("CurveTexture_cy0hq")
+radial_velocity_min = -10.0
+radial_velocity_max = 9.99998
+radial_velocity_curve = SubResource("CurveTexture_tegxd")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_vjuj2")
