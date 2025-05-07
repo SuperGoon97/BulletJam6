@@ -15,7 +15,7 @@ const BOSS_FOUNTAIN_BULLET_GRADIENT = preload("res://Resources/boss_fountain_bul
 @onready var boss_sprite: Sprite2D = $boss_sprite
 
 var active :bool = false
-var health :int = 100
+var health :int = 80
 var alive :bool = true
 var score_value = 100
 

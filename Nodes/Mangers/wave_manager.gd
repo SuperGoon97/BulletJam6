@@ -35,9 +35,9 @@ enemy_spawner_4 , enemy_spawner_5 , enemy_spawner_6 , enemy_spawner_7 , enemy_sp
 @onready var anom_spawner_array:Array[AnomalySpawner] = [anomaly_spawner_0,anomaly_spawner_1,anomaly_spawner_2,anomaly_spawner_3]
 
 func _ready() -> void:
-	#spawn_boss(BOSS)
 	is_ready.emit("wave_manager")
-	run_waves()
+	spawn_boss(BOSS)
+	#run_waves()
 
 func spawn_at(location:int , speed:float , direction:Vector2 , type:Gv.ET , score):
 	var new_enemy :Enemy
