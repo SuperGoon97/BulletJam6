@@ -12,5 +12,9 @@ strength = 100.0
 collision_layer = 0
 collision_mask = 15
 
+[node name="anamoly_event" parent="." index="1"]
+wait_time = 5.0
+autostart = true
+
 [connection signal="area_entered" from="anomaly_area" to="." method="_on_anomaly_area_area_entered"]
 [connection signal="area_exited" from="anomaly_area" to="." method="_on_anomaly_area_area_exited"]

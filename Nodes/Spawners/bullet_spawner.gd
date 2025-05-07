@@ -1,10 +1,12 @@
 class_name BulletSpawner extends Node2D
 
+const EXPLODING_BULLET = preload("res://Nodes/Bullets/exploding_bullet.tscn")
 const BULLET = preload("res://Nodes/Bullets/bullet.tscn")
 @export var base_bullet_scale:float = 0.5
 
-func spawn_bullet(speed:float , team:Gv.team , direction :Vector2 , color:GradientTexture1D , angle:float = 0.0 , size:float = 1.0):
-	var new_bullet:BulletBase = BULLET.instantiate()
+## Spawn bullet type defaults to normal
+func spawn_bullet(speed:float , team:Gv.team , direction :Vector2 , color:GradientTexture1D , angle:float = 0.0 , size:float = 1.0 , bullet_type:Gv.BT = Gv.BT.NORMAL):
+	var new_bullet:BulletBase = return_bullet_base(bullet_type)
 	var new_bullet_hitbox :Area2D = new_bullet.get_node("bullet_hitbox")
 	var new_bullet_sprite :Sprite2D = new_bullet.get_node("bullet_sprite")
 	new_bullet.direction = direction
@@ -16,3 +18,12 @@ func spawn_bullet(speed:float , team:Gv.team , direction :Vector2 , color:Gradie
 	new_bullet_hitbox.set_collision_layer_value(team + 3 , true)
 	new_bullet.scale = Vector2(size*base_bullet_scale , size*base_bullet_scale)
 	get_tree().get_first_node_in_group("level").add_child(new_bullet)
+
+func return_bullet_base(bullet_type:Gv.BT) -> BulletBase:
+	var return_bullet:BulletBase
+	match bullet_type:
+		Gv.BT.NORMAL:
+			return_bullet = BULLET.instantiate()
+		Gv.BT.EXPLODING:
+			return_bullet = EXPLODING_BULLET.instantiate()
+	return return_bullet

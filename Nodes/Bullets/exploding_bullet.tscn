@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck8xt7gdth4ss"]
+
+[ext_resource type="PackedScene" uid="uid://e3qatrq5014s" path="res://Nodes/Bullets/bullet.tscn" id="1_7rs1c"]
+[ext_resource type="Script" uid="uid://bo54pkkak6h3n" path="res://Nodes/Bullets/exploding_bullet.gd" id="2_56km7"]
+[ext_resource type="Script" uid="uid://bqsqxcoinpxwv" path="res://Nodes/Spawners/bullet_spawner.gd" id="3_mykbk"]
+[ext_resource type="Script" uid="uid://crc4elm4ufayc" path="res://Nodes/Bullet Patterns/bullet_pattern_node.gd" id="4_hcgcu"]
+
+[node name="exploding_bullet" instance=ExtResource("1_7rs1c")]
+script = ExtResource("2_56km7")
+speed = 10.0
+
+[node name="bullet_auto_cleanup_timer" parent="." index="3"]
+wait_time = 15.0
+
+[node name="bullet_explode_timer" type="Timer" parent="." index="4"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="BulletSpawner" type="Node2D" parent="." index="5"]
+script = ExtResource("3_mykbk")
+base_bullet_scale = 0.25
+metadata/_custom_type_script = "uid://bqsqxcoinpxwv"
+
+[node name="BulletPatternNode" type="Node" parent="." index="6"]
+script = ExtResource("4_hcgcu")
+bullet_pattern_type = 4
+metadata/_custom_type_script = "uid://crc4elm4ufayc"
+
+[connection signal="timeout" from="bullet_explode_timer" to="." method="_on_bullet_explode_timer_timeout"]
