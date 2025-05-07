@@ -13,4 +13,3 @@ func _init() -> void:
 		speed_sequence.append(200)
 		type_sequence.append(Gv.ET.STRAFER)
 		score_sequence.append(30)
-	print (type_sequence)

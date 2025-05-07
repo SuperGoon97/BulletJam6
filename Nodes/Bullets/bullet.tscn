@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://ceh4yo7kmpqwv" path="res://Nodes/Bullets/bullet.gd" id="1_mehxd"]
 [ext_resource type="Texture2D" uid="uid://dqf01e3h7ra0j" path="res://Sprites/tex_bullet.png" id="2_fdrq6"]
 [ext_resource type="PackedScene" uid="uid://cmtjjeif550t7" path="res://ParticleEffects/bullet_tail_particle.tscn" id="3_8ncao"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ix6xb"]
-radius = 7.0
+[ext_resource type="PackedScene" uid="uid://dl44cb7emsppf" path="res://Nodes/utility/hit_box.tscn" id="4_y6t8e"]
 
 [node name="bullet" type="Node2D" groups=["bullet"]]
 scale = Vector2(0.5, 0.5)
@@ -19,18 +17,20 @@ texture = ExtResource("2_fdrq6")
 [node name="bullet_trail_particle" parent="bullet_sprite" instance=ExtResource("3_8ncao")]
 show_behind_parent = true
 
-[node name="bullet_hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 0
-
-[node name="bullet_hitbox_shape" type="CollisionShape2D" parent="bullet_hitbox"]
-shape = SubResource("CircleShape2D_ix6xb")
-
 [node name="bullet_onscreen" type="VisibleOnScreenNotifier2D" parent="."]
-visible = false
 position = Vector2(-5.96046e-07, 3.57628e-07)
 scale = Vector2(0.8, 0.8)
 
-[connection signal="area_entered" from="bullet_hitbox" to="." method="_on_bullet_hitbox_area_entered"]
+[node name="bullet_hitbox" parent="." node_paths=PackedStringArray("owner_root_node") instance=ExtResource("4_y6t8e")]
+collision_layer = 0
+collision_mask = 0
+owner_root_node = NodePath("..")
+
+[node name="bullet_auto_cleanup_timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="screen_entered" from="bullet_onscreen" to="." method="_on_bullet_onscreen_screen_entered"]
 [connection signal="screen_exited" from="bullet_onscreen" to="." method="_on_bullet_onscreen_screen_exited"]
+[connection signal="area_entered" from="bullet_hitbox" to="." method="_on_bullet_hitbox_area_entered"]
+[connection signal="timeout" from="bullet_auto_cleanup_timer" to="." method="_on_bullet_auto_cleanup_timer_timeout"]

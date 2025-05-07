@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://c44ulypkt6a35"]
+[gd_scene load_steps=11 format=3 uid="uid://c44ulypkt6a35"]
 
 [ext_resource type="Script" uid="uid://3f1at0k6lqlu" path="res://Nodes/Mangers/wave_manager.gd" id="1_gqslp"]
 [ext_resource type="PackedScene" uid="uid://cskochpqn2q8s" path="res://Nodes/Spawners/enemy_spawner.tscn" id="2_mrpt4"]
 [ext_resource type="Script" uid="uid://dsln3xsmnueco" path="res://Nodes/Waves/wave_basics.gd" id="3_sppsi"]
 [ext_resource type="Script" uid="uid://dd3pa87y1p4fe" path="res://Nodes/Waves/wave_strafers.gd" id="4_6ce0h"]
 [ext_resource type="Script" uid="uid://da3ldjnr1hjjp" path="res://Nodes/Waves/wave_diagonals.gd" id="5_6ht7w"]
+[ext_resource type="PackedScene" uid="uid://dl3wipeccja4" path="res://Nodes/Spawners/anomaly_spawner.tscn" id="6_6ht7w"]
+[ext_resource type="PackedScene" uid="uid://br7w7yscvgl8v" path="res://Nodes/Anomalies/anomaly_duplicating.tscn" id="6_28mji"]
 
 [sub_resource type="Animation" id="Animation_6ce0h"]
 resource_name = "boss_one"
@@ -30,6 +32,20 @@ tracks/0/keys = {
 }, {
 "args": [ExtResource("5_6ht7w")],
 "method": &"spawn_wave"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.06667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("6_28mji"), 2, Vector2(1, -1), 10.0, Vector2(10, 10), 10.0],
+"method": &"spawn_anomaly_at"
 }]
 }
 
@@ -80,5 +96,17 @@ position = Vector2(600, -50)
 libraries = {
 &"": SubResource("AnimationLibrary_6ce0h")
 }
+
+[node name="anomaly_spawner_0" parent="." instance=ExtResource("6_6ht7w")]
+position = Vector2(-650, -400)
+
+[node name="anomaly_spawner_1" parent="." instance=ExtResource("6_6ht7w")]
+position = Vector2(650, -400)
+
+[node name="anomaly_spawner_2" parent="." instance=ExtResource("6_6ht7w")]
+position = Vector2(-650, 400)
+
+[node name="anomaly_spawner_3" parent="." instance=ExtResource("6_6ht7w")]
+position = Vector2(650, 400)
 
 [connection signal="animation_finished" from="wave_manager_anim_player" to="." method="_on_wave_manager_anim_player_animation_finished"]

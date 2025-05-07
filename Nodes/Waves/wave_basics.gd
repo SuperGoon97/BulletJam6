@@ -9,4 +9,3 @@ func _init() -> void:
 		speed_sequence.append(50)
 		type_sequence.append(Gv.ET.BASIC_TWIN)
 		score_sequence.append(10)
-	print (type_sequence)

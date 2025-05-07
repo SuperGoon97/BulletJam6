@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d262lwgyrsfb8"]
+
+[ext_resource type="PackedScene" uid="uid://drxelr12edwge" path="res://Nodes/Anomalies/anomaly_node.tscn" id="1_cii40"]
+[ext_resource type="Script" uid="uid://5fd273dnkq4x" path="res://Nodes/Anomalies/anomaly_gravity.gd" id="2_y6wuq"]
+
+[node name="anomaly_gravity" instance=ExtResource("1_cii40")]
+script = ExtResource("2_y6wuq")
+is_pull = true
+strength = 100.0
+
+[node name="anomaly_area" parent="." index="0"]
+collision_layer = 0
+collision_mask = 15
+
+[connection signal="area_entered" from="anomaly_area" to="." method="_on_anomaly_area_area_entered"]
+[connection signal="area_exited" from="anomaly_area" to="." method="_on_anomaly_area_area_exited"]
