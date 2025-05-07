@@ -8,7 +8,6 @@ var wave:Wave:
 		return wave
 	set(value):
 		wave = value
-		print("wave set")
 		spawn_wave()
 
 func spawn_wave():

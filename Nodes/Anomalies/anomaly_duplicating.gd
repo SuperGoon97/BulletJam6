@@ -29,8 +29,7 @@ func duplicate_object(node:Node2D):
 func _on_anamoly_event_timeout() -> void:
 	super()
 	for area in anomaly_area.get_overlapping_areas():
-		var parent_node = area.get_parent()
-		if parent_node.get_groups().size() == 0:
-			parent_node = parent_node.get_parent()
-		duplicate_object(parent_node)
+		if area is HitBox:
+			var parent_node = area.owner_root_node
+			duplicate_object(parent_node)
 	pass # Replace with function body.

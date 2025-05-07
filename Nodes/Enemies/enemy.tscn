@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d283ldhu5qjpk" path="res://Sprites/Explosions/Explosion02_Frame_08_png_processed.png" id="10_cvrge"]
 [ext_resource type="Texture2D" uid="uid://cr7iyi6oyklxn" path="res://Sprites/Explosions/Explosion02_Frame_09_png_processed.png" id="11_y3ik2"]
 [ext_resource type="AudioStream" uid="uid://s6f4le1tqdsh" path="res://Sound Effects/Explosion Medium 2-1.wav" id="12_lr5ev"]
+[ext_resource type="PackedScene" uid="uid://dl44cb7emsppf" path="res://Nodes/utility/hit_box.tscn" id="12_rhad5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_304bf"]
 animations = [{
@@ -85,8 +86,6 @@ _data = {
 &"wobble": SubResource("Animation_lr5ev")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4mq8h"]
-
 [node name="enemy" type="Node2D" groups=["enemy"]]
 script = ExtResource("1_4mq8h")
 speed = 100.0
@@ -111,15 +110,14 @@ libraries = {
 
 [node name="enemy_moving_components" type="Node2D" parent="."]
 
+[node name="enemy_hitbox" parent="enemy_moving_components" node_paths=PackedStringArray("owner_root_node") instance=ExtResource("12_rhad5")]
+collision_layer = 2
+collision_mask = 0
+owner_root_node = NodePath("../..")
+
 [node name="enemy_sprite" type="Sprite2D" parent="enemy_moving_components"]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_xmpay")
-
-[node name="enemy_hitbox" type="Area2D" parent="enemy_moving_components"]
-collision_layer = 2
-
-[node name="enemy_hitbox_shape" type="CollisionShape2D" parent="enemy_moving_components/enemy_hitbox"]
-shape = SubResource("CircleShape2D_4mq8h")
 
 [connection signal="screen_entered" from="enemy_onscreen" to="." method="_on_enemy_onscreen_screen_entered"]
 [connection signal="screen_exited" from="enemy_onscreen" to="." method="_on_enemy_onscreen_screen_exited"]
