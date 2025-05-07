@@ -12,7 +12,7 @@ const DUMB_BULLET_GRADIENT = preload("res://Resources/dumb_bullet_gradient.tres"
 @onready var turret_death_sound: AudioStreamPlayer = $turret_explodes/turret_death_sound
 @onready var boss_sprite: Sprite2D = $boss_sprite
 
-var health :int = 100
+var health :int = 80
 var score_value :int = 100
 var alive :bool = true
 

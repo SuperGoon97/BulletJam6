@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://0ys4hkqfgnd6"]
+[gd_scene load_steps=23 format=3 uid="uid://0ys4hkqfgnd6"]
 
 [ext_resource type="Texture2D" uid="uid://1dlq85d7cm71" path="res://Sprites/GunTurrets/GunTurretMount_png_processed.png" id="1_0wlru"]
 [ext_resource type="Script" uid="uid://w0ef5sgr4rnp" path="res://Nodes/Bosses/boss_centre_turret.gd" id="1_xaxs4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dsjoo00j2m8ik" path="res://Sprites/GunTurrets/GunTurret_Green_png_processed.png" id="3_qlwtn"]
 [ext_resource type="PackedScene" uid="uid://dvgiyukkhh0d5" path="res://Nodes/Spawners/bullet_spawner.tscn" id="4_l6j78"]
 [ext_resource type="Script" uid="uid://crc4elm4ufayc" path="res://Nodes/Bullet Patterns/bullet_pattern_node.gd" id="5_q4ghy"]
+[ext_resource type="Script" uid="uid://noyk50r5d5ii" path="res://Nodes/utility/hit_box.gd" id="7_rt4na"]
 [ext_resource type="Texture2D" uid="uid://c5q2o3xwc0ljm" path="res://Sprites/Explosions/Explosion02_Frame_01_png_processed.png" id="7_y4t84"]
 [ext_resource type="Texture2D" uid="uid://xx7hh71c2cju" path="res://Sprites/Explosions/Explosion02_Frame_02_png_processed.png" id="8_rt4na"]
 [ext_resource type="Texture2D" uid="uid://bxjt1vrtrvaeb" path="res://Sprites/Explosions/Explosion02_Frame_03_png_processed.png" id="9_1hne1"]
@@ -16,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://d283ldhu5qjpk" path="res://Sprites/Explosions/Explosion02_Frame_08_png_processed.png" id="14_x5egi"]
 [ext_resource type="Texture2D" uid="uid://cr7iyi6oyklxn" path="res://Sprites/Explosions/Explosion02_Frame_09_png_processed.png" id="15_b2ljb"]
 [ext_resource type="AudioStream" uid="uid://s6f4le1tqdsh" path="res://Sound Effects/Explosion Medium 2-1.wav" id="16_wuf1g"]
+
+[sub_resource type="Animation" id="Animation_kw2q4"]
+length = 0.001
 
 [sub_resource type="Animation" id="Animation_vsvdf"]
 resource_name = "damaged"
@@ -44,9 +48,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 0.194376, 0.144153, 1), Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_kw2q4"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_khsql"]
 _data = {
@@ -128,9 +129,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_khsql")
 }
 
-[node name="boss_hitbox" type="Area2D" parent="."]
-collision_layer = 2
+[node name="boss_hitbox" type="Area2D" parent="." node_paths=PackedStringArray("owner_root_node")]
+collision_layer = 0
 collision_mask = 0
+script = ExtResource("7_rt4na")
+owner_root_node = NodePath("..")
 
 [node name="boss_hitbox_shape" type="CollisionShape2D" parent="boss_hitbox"]
 shape = SubResource("CircleShape2D_rp2gh")
