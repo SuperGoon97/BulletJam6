@@ -6,10 +6,12 @@ signal score_changed(score:int)
 const BULLET_MANAGER = preload("res://Nodes/Mangers/bullet_manager.tscn")
 const UI_MANAGER = preload("res://Nodes/Mangers/ui_manager.tscn")
 const WAVE_MANAGER = preload("res://Nodes/Mangers/wave_manager.tscn")
+const MAIN_CAMERA = preload("res://Nodes/Cameras/main_camera.tscn")
 
 var bullet_manager :BulletManager
 var ui_manager :UiManager
 var wave_manager :WaveManager
+var main_camera: MainCamera
 
 var current_score:int = 0
 
@@ -17,10 +19,12 @@ var manager_dict :Dictionary = {
 "bullet_manager":false ,
 "ui_manager":false ,
 "wave_manager":false ,
+"main_camera":false , 
 }
 
 func _ready() -> void:
 	Gv.set("game_manager" , self)
+	create_camera()
 	create_managers()
 	check_loading_state()
 
@@ -35,10 +39,14 @@ func create_managers():
 	ui_manager = UI_MANAGER.instantiate()
 	ui_manager.is_ready.connect(manager_ready)
 	score_changed.connect(ui_manager.update_score_label)
-	var camera:Camera2D = get_tree().get_first_node_in_group("camera")
-	ui_manager.scale = Vector2(1.0/camera.zoom.x,1.0/camera.zoom.y)
-	ui_manager.position = (Vector2(ui_manager.pivot_offset.x * (1 - camera.zoom.x),ui_manager.pivot_offset.y * (1 - camera.zoom.y)))
-	camera.add_child(ui_manager)
+	ui_manager.scale = Vector2(1.0/main_camera.zoom.x,1.0/main_camera.zoom.y)
+	ui_manager.position = (Vector2(ui_manager.pivot_offset.x * (1 - main_camera.zoom.x),ui_manager.pivot_offset.y * (1 - main_camera.zoom.y)))
+	main_camera.add_child(ui_manager)
+
+func create_camera():
+	main_camera = MAIN_CAMERA.instantiate()
+	main_camera.is_ready.connect(manager_ready)
+	add_child(main_camera)
 
 func manager_ready (input:String):
 	manager_dict[input] = true

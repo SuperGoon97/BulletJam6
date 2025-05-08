@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5uequldoiydv"]
+
+[ext_resource type="Texture2D" uid="uid://cw4hk0wqikl3x" path="res://Sprites/parallax/blue-back.png" id="1_lyksc"]
+[ext_resource type="Script" uid="uid://dp1gsy11dgbma" path="res://Backgrounds/parallax_background.gd" id="1_silwy"]
+[ext_resource type="Texture2D" uid="uid://y1w54eghbuei" path="res://Sprites/parallax/asteroid-1.png" id="3_fnl5y"]
+[ext_resource type="Texture2D" uid="uid://ddog5xk6iixcf" path="res://Sprites/parallax/asteroid-2.png" id="4_no766"]
+[ext_resource type="Texture2D" uid="uid://2m85l88orol4" path="res://Sprites/parallax/prop-planet-small.png" id="5_8njwd"]
+[ext_resource type="Texture2D" uid="uid://x5uiehpnvpww" path="res://Sprites/parallax/blue-stars.png" id="5_g0lle"]
+[ext_resource type="Texture2D" uid="uid://517ggfgmk6x1" path="res://Sprites/parallax/prop-planet-big.png" id="6_bcs55"]
+
+[node name="parallax_background" type="ParallaxBackground"]
+offset = Vector2(544, 0)
+transform = Transform2D(1, 0, 0, 1, 544, 0)
+script = ExtResource("1_silwy")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.481789, 0.481789, 0.48179, 1)
+metadata/_edit_lock_ = true
+
+[node name="p_layer_background" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1088, 640)
+metadata/_edit_lock_ = true
+
+[node name="bg" type="Sprite2D" parent="p_layer_background"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_lyksc")
+metadata/_edit_lock_ = true
+
+[node name="p_layer_stars" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(816, 480)
+metadata/_edit_lock_ = true
+
+[node name="stars" type="Sprite2D" parent="p_layer_stars"]
+position = Vector2(-487, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("5_g0lle")
+
+[node name="p_layer_planet1" type="ParallaxLayer" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+motion_mirroring = Vector2(700, 700)
+metadata/_edit_lock_ = true
+
+[node name="planet" type="Sprite2D" parent="p_layer_planet1"]
+position = Vector2(-356, -56)
+scale = Vector2(4, 4)
+texture = ExtResource("6_bcs55")
+
+[node name="planet2" type="Sprite2D" parent="p_layer_planet1"]
+modulate = Color(0.5, 0.5, 0.5, 1)
+position = Vector2(-39, 264)
+scale = Vector2(2, 2)
+texture = ExtResource("5_8njwd")
+
+[node name="p_layer_asteroid" type="ParallaxLayer" parent="."]
+modulate = Color(2, 2, 2, 1)
+motion_mirroring = Vector2(1088, 640)
+metadata/_edit_lock_ = true
+
+[node name="asteroid" type="Sprite2D" parent="p_layer_asteroid"]
+position = Vector2(-225, -142)
+scale = Vector2(4, 4)
+texture = ExtResource("3_fnl5y")
+metadata/_edit_lock_ = true
+
+[node name="asteroid2" type="Sprite2D" parent="p_layer_asteroid"]
+position = Vector2(-284, -36)
+scale = Vector2(2.18518, 2.18518)
+texture = ExtResource("3_fnl5y")
+flip_h = true
+metadata/_edit_lock_ = true
+
+[node name="Asteroid-2" type="Sprite2D" parent="p_layer_asteroid"]
+position = Vector2(254, -40)
+texture = ExtResource("4_no766")
+flip_h = true
+metadata/_edit_lock_ = true

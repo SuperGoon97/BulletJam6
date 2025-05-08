@@ -3,6 +3,9 @@ class_name BulletTrailParticle extends CPUParticles2D
 @onready var bullet_trail_dust: CPUParticles2D = $bullet_trail_dust
 var base_amount:int = 5
 var base_lifetime = 0.33
+func _ready() -> void:
+	scale_curve_y = scale_curve_y.duplicate()
+	scale_curve_x = scale_curve_x.duplicate()
 
 func set_bullet_trail_colors(gradient:GradientTexture1D):
 	var g = gradient.gradient
@@ -12,16 +15,20 @@ func set_bullet_trail_colors(gradient:GradientTexture1D):
 
 func set_bullet_trail_length(speed:float):
 	var speed_scale = (speed/1000.0)/4.0
-	amount = base_amount * (speed/150.0)
-	lifetime = clampf((base_lifetime * (150.0/speed)),0.1,0.5)
+	amount = clampf(base_amount * (speed/150.0),1.0,10.0)
+	lifetime = clampf((base_lifetime * (150.0/speed+0.01)),0.1,0.33)
 	bullet_trail_dust.lifetime = lifetime * 1.1
 	for n in scale_curve_y.point_count:
 		scale_curve_y.set_point_value(n,scale_curve_y.get_point_position(n).y+speed_scale)
 
 func set_bullet_trail_scale(pscale:float):
-	scale_curve_y = scale_curve_y.duplicate()
-	scale_curve_x = scale_curve_x.duplicate()
 	for n in scale_curve_y.point_count:
 		scale_curve_y.set_point_value(n,scale_curve_y.get_point_position(n).y+pscale)
 		scale_curve_x.set_point_value(n,scale_curve_x.get_point_position(n).y+pscale)
 	pass
+
+func overwrite_trail_scale(pscale:float):
+	for n in scale_curve_y.point_count:
+		scale_curve_y.set_point_value(n,pscale)
+		scale_curve_x.set_point_value(n,pscale)
+	

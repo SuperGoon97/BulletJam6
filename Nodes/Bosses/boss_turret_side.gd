@@ -7,7 +7,7 @@ const DUMB_BULLET_GRADIENT = preload("res://Resources/dumb_bullet_gradient.tres"
 @onready var bullet_pattern_node: BulletPatternNode = $bullet_pattern_node
 @onready var bullet_pattern :BulletPattern = bullet_pattern_node.bullet_pattern
 @onready var boss_turret_animation: AnimationPlayer = $boss_turret_animation
-@onready var boss_hitbox: Area2D = $boss_hitbox
+@onready var boss_hitbox: Area2D = $boss_sprite/boss_hitbox
 @onready var turret_explodes: AnimatedSprite2D = $turret_explodes
 @onready var turret_death_sound: AudioStreamPlayer = $turret_explodes/turret_death_sound
 @onready var boss_sprite: Sprite2D = $boss_sprite
@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func shoot():
 	for n in bullet_pattern.number_of_shots:
-		bullet_spawner.spawn_bullet(100 , Gv.team.enemy ,  direction , DUMB_BULLET_GRADIENT , bullet_pattern.angle_sequence[n] , 7)
+		bullet_spawner.spawn_bullet(100 , Gv.team.enemy ,  direction , DUMB_BULLET_GRADIENT , bullet_pattern.angle_sequence[n] , 1.0, Gv.BT.CAROUSEL)
 		await get_tree().create_timer(bullet_pattern.time_between_shots).timeout
 
 func _on_shooting_timer_timeout() -> void:

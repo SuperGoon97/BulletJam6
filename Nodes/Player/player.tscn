@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cj4pd0hmfyeyk"]
+[gd_scene load_steps=23 format=3 uid="uid://cj4pd0hmfyeyk"]
 
 [ext_resource type="Script" uid="uid://b8rg4iphmw06q" path="res://Nodes/Player/player.gd" id="1_qlfej"]
 [ext_resource type="Texture2D" uid="uid://mlqw0li1np0w" path="res://Sprites/PlayerShips/PlayerBlue_Frame_01_png_processed.png" id="2_q1ymb"]
@@ -75,6 +75,9 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jexjf"]
+radius = 6.0
+
 [node name="player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_qlfej")
 speed = 100.0
@@ -102,7 +105,6 @@ scale = Vector2(3.33333, 3.33333)
 sprite_frames = SubResource("SpriteFrames_nussk")
 
 [node name="player_hitbox" parent="." node_paths=PackedStringArray("owner_root_node") instance=ExtResource("16_jexjf")]
-position = Vector2(1, 3)
 owner_root_node = NodePath("..")
 
 [node name="bullet_spawner" parent="." instance=ExtResource("3_lkjqq")]
@@ -117,6 +119,11 @@ bullet_pattern_type = 1
 stream = ExtResource("18_oh6yy")
 volume_db = -18.0
 pitch_scale = 2.0
+
+[node name="player_sb" type="CharacterBody2D" parent="."]
+
+[node name="player_sb_shape" type="CollisionShape2D" parent="player_sb"]
+shape = SubResource("CircleShape2D_jexjf")
 
 [connection signal="recieved_damage" from="." to="." method="_on_recieved_damage"]
 [connection signal="timeout" from="bullet_spawner/shooting_timer" to="." method="_on_shooting_timer_timeout"]

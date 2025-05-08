@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dffrqunlqx8ml"]
+
+[ext_resource type="PackedScene" uid="uid://e3qatrq5014s" path="res://Nodes/Bullets/bullet.tscn" id="1_75ajm"]
+[ext_resource type="Script" uid="uid://d0k3y50rwi6hn" path="res://Nodes/Bullets/static_bullet.gd" id="2_yvtlb"]
+
+[node name="static_bullet" instance=ExtResource("1_75ajm")]
+script = ExtResource("2_yvtlb")
+speed = 10.0

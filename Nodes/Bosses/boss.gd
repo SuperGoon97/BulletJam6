@@ -36,5 +36,6 @@ func _ready() -> void:
 
 func destroy():
 	dead = true
+	Gf.screen_shake_for_duration(8.0,2.0,10.0)
 	boss_animations.play("boss_death_animation")
 	destroyed_by_player.emit(score_value)

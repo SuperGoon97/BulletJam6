@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://cr7iyi6oyklxn" path="res://Sprites/Explosions/Explosion02_Frame_09_png_processed.png" id="15_lgkw7"]
 [ext_resource type="AudioStream" uid="uid://s6f4le1tqdsh" path="res://Sound Effects/Explosion Medium 2-1.wav" id="16_gdhrp"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vsvdf"]
+radius = 24.0832
+
 [sub_resource type="Animation" id="Animation_kw2q4"]
 length = 0.001
 tracks/0/type = "value"
@@ -66,9 +69,6 @@ _data = {
 &"RESET": SubResource("Animation_kw2q4"),
 &"damaged": SubResource("Animation_vsvdf")
 }
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vsvdf"]
-radius = 24.0832
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ucip0"]
 animations = [{
@@ -125,6 +125,17 @@ texture = ExtResource("3_khsql")
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_hpd6d")
 
+[node name="boss_hitbox" type="Area2D" parent="boss_sprite" node_paths=PackedStringArray("owner_root_node")]
+position = Vector2(-2, 0)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("7_2emdy")
+owner_root_node = NodePath("../..")
+
+[node name="boss_hitbox_shape" type="CollisionShape2D" parent="boss_sprite/boss_hitbox"]
+position = Vector2(2, 0)
+shape = SubResource("CircleShape2D_vsvdf")
+
 [node name="bullet_spawner" parent="." instance=ExtResource("5_o8mgu")]
 position = Vector2(0, 33)
 scale = Vector2(0.75, 0.75)
@@ -141,15 +152,6 @@ autostart = true
 libraries = {
 &"": SubResource("AnimationLibrary_khsql")
 }
-
-[node name="boss_hitbox" type="Area2D" parent="." node_paths=PackedStringArray("owner_root_node")]
-collision_layer = 0
-collision_mask = 0
-script = ExtResource("7_2emdy")
-owner_root_node = NodePath("..")
-
-[node name="boss_hitbox_shape" type="CollisionShape2D" parent="boss_hitbox"]
-shape = SubResource("CircleShape2D_vsvdf")
 
 [node name="turret_explodes" type="AnimatedSprite2D" parent="."]
 visible = false
