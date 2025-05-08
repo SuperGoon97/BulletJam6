@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dnxro828p1407"]
+[gd_scene load_steps=26 format=3 uid="uid://dnxro828p1407"]
 
 [ext_resource type="Script" uid="uid://dth56omnq5b1x" path="res://Nodes/Bosses/boss.gd" id="1_iah3i"]
 [ext_resource type="Texture2D" uid="uid://ci31g5c7medmv" path="res://Sprites/Platforms/Platform_01_png_processed.png" id="1_paewo"]
@@ -576,6 +576,9 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q68iu"]
+size = Vector2(389, 74.5)
+
 [node name="Boss" type="Node2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_iah3i")
@@ -656,3 +659,10 @@ sprite_frames = SubResource("SpriteFrames_gop86")
 [node name="turret_death_sound" type="AudioStreamPlayer" parent="boss_death_animation"]
 stream = ExtResource("20_77jbs")
 volume_db = -6.0
+
+[node name="boss_sb" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="boss_sb_shape" type="CollisionShape2D" parent="boss_sb"]
+position = Vector2(0, 4.25)
+shape = SubResource("RectangleShape2D_q68iu")

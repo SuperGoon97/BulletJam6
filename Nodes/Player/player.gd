@@ -15,6 +15,8 @@ signal recieved_damage(current_health:int)
 @onready var thruster_sprite_2: AnimatedSprite2D = $player_sprite/thruster_sprite2
 @onready var player_death_animation: AnimatedSprite2D = $player_sprite/player_death_animation
 @onready var player_weapon_sound: AudioStreamPlayer = $bullet_spawner/player_weapon_sound
+@onready var player_sb: CharacterBody2D = $player_sb
+@onready var player_sb_shape: CollisionShape2D = $player_sb/player_sb_shape
 
 var direction:Vector2 = Vector2(0.0,0.0)
 var shooting :bool = false
@@ -29,7 +31,12 @@ func _process(delta: float) -> void:
 	var dir_x = Input.get_axis("move_left" , "move_right")
 	var dir_y = Input.get_axis("move_up" , "move_down")
 	direction = Vector2(dir_x , dir_y).normalized()
-	position += (direction * speed * delta)
+	var col_check:KinematicCollision2D = player_sb.move_and_collide(direction * speed * delta,true)
+	if col_check:
+		print(col_check.get_position())
+		position = col_check.get_position() + ((position - col_check.get_position())*2.0)
+	else:
+		position += (direction * speed * delta)
 	if dir_x > 0:
 		player_sprite.texture = PLAYER_BLUE_FRAME_02_PNG_PROCESSED
 		player_sprite.flip_h = true
@@ -65,6 +72,7 @@ func _on_shooting_timer_timeout() -> void:
 		shooting_timer.stop()
 
 func damage():
+	Gf.screen_shake(25.0,2.0)
 	if health > 0:
 		health = health - 1
 		recieved_damage.emit(health)

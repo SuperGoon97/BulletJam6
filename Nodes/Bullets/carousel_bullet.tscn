@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4x4gwgk8mphn"]
+
+[ext_resource type="PackedScene" uid="uid://e3qatrq5014s" path="res://Nodes/Bullets/bullet.tscn" id="1_juxuo"]
+[ext_resource type="Script" uid="uid://d22dw8fp1xpi4" path="res://Nodes/Bullets/carousel_bullet.gd" id="2_g15gm"]
+[ext_resource type="Script" uid="uid://bqsqxcoinpxwv" path="res://Nodes/Spawners/bullet_spawner.gd" id="3_pqcfv"]
+[ext_resource type="Script" uid="uid://crc4elm4ufayc" path="res://Nodes/Bullet Patterns/bullet_pattern_node.gd" id="4_onl4f"]
+
+[node name="carousel_bullet" instance=ExtResource("1_juxuo")]
+script = ExtResource("2_g15gm")
+speed = 10.0
+
+[node name="BulletSpawner" type="Node2D" parent="." index="4"]
+script = ExtResource("3_pqcfv")
+metadata/_custom_type_script = "uid://bqsqxcoinpxwv"
+
+[node name="BulletPatternNode" type="Node" parent="." index="5"]
+script = ExtResource("4_onl4f")
+bullet_pattern_type = 5
+metadata/_custom_type_script = "uid://crc4elm4ufayc"

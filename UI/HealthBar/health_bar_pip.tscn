@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcom7e1bbmuar"]
+
+[ext_resource type="Texture2D" uid="uid://y3fpjgcqwgi0" path="res://Sprites/HPBar/BarV5_ProgressBar.png" id="1_g6l4c"]
+
+[node name="health_bar_pip" type="Sprite2D"]
+scale = Vector2(0.2442, 0.992307)
+skew = 0.523599
+texture = ExtResource("1_g6l4c")
