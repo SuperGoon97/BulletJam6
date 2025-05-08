@@ -31,13 +31,14 @@ enemy_spawner_4 , enemy_spawner_5 , enemy_spawner_6 , enemy_spawner_7 , enemy_sp
 @onready var anomaly_spawner_1: AnomalySpawner = $anomaly_spawner_1
 @onready var anomaly_spawner_2: AnomalySpawner = $anomaly_spawner_2
 @onready var anomaly_spawner_3: AnomalySpawner = $anomaly_spawner_3
+@onready var anomaly_spawner_4: AnomalySpawner = $anomaly_spawner_4
+@onready var anomaly_spawner_5: AnomalySpawner = $anomaly_spawner_5
 
-@onready var anom_spawner_array:Array[AnomalySpawner] = [anomaly_spawner_0,anomaly_spawner_1,anomaly_spawner_2,anomaly_spawner_3]
+@onready var anom_spawner_array:Array[AnomalySpawner] = [anomaly_spawner_0,anomaly_spawner_1,anomaly_spawner_2,anomaly_spawner_3,anomaly_spawner_4,anomaly_spawner_5]
 
 func _ready() -> void:
 	is_ready.emit("wave_manager")
-	spawn_boss(BOSS)
-	#run_waves()
+	run_waves()
 
 func spawn_at(location:int , speed:float , direction:Vector2 , type:Gv.ET , score):
 	var new_enemy :Enemy
@@ -47,16 +48,16 @@ func spawn_at(location:int , speed:float , direction:Vector2 , type:Gv.ET , scor
 func spawn_wave(wave_script :GDScript):
 	var n_wave_node:WaveNode = WAVE_NODE.instantiate()
 	add_child(n_wave_node)
-	n_wave_node.set("wave",wave_script.new())
 	n_wave_node.spawn.connect(spawn_at)
+	n_wave_node.set("wave",wave_script.new())
 
-##Spawns an anomaly at given location 0-3 inclusive moving along the given direction at the given speed, increases in size to given desired_scale over scale time
+##Spawns an anomaly at given location 0-5 inclusive moving along the given direction at the given speed, increases in size to given desired_scale over scale time
 func spawn_anomaly_at(anomaly:PackedScene,location:int,direction:Vector2,speed:float,final_scale:Vector2 = Vector2(1.0,1.0),scale_time:float = 1.0):
 	var parent_spawner:AnomalySpawner = anom_spawner_array[location]
 	var new_anomaly:Anomaly = anomaly.instantiate()
 	parent_spawner.add_child(new_anomaly)
 	new_anomaly.global_position = parent_spawner.global_position
-	new_anomaly.dir = direction
+	new_anomaly.dir = direction.normalized()
 	new_anomaly.speed = speed
 	new_anomaly.final_scale = final_scale
 	new_anomaly.time_to_reach_final_scale = scale_time
@@ -64,7 +65,8 @@ func spawn_anomaly_at(anomaly:PackedScene,location:int,direction:Vector2,speed:f
 
 func run_waves():
 	wave_manager_anim_player.play("stage_one")
-
+	#wave_manager_anim_player.play_section("stage_one" , 120)
+	
 func spawn_boss(boss:PackedScene):
 	var new_boss :Boss = boss.instantiate()
 	new_boss.position = new_boss.spawn_pos

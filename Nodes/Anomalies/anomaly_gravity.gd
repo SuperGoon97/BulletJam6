@@ -2,7 +2,7 @@ class_name AnomalyGravity extends Anomaly
 
 @onready var anomaly_area: Area2D = $anomaly_area
 @export var is_pull:bool = true
-@export var strength:float = 10.0
+@export var strength:float = 7.5
 var overlapped:Array[Node2D]
 
 func _ready() -> void:
@@ -26,21 +26,26 @@ func _on_anomaly_area_area_exited(area: Area2D) -> void:
 			overlapped.remove_at(index)
 
 func _process(delta: float) -> void:
+	super(delta)
 	if is_pull:
 		for node in overlapped:
 			var vec_normal:Vector2 = Vector2(node.global_position - global_position).normalized()
 			if node.direction.angle_to(vec_normal) > 0.05:
 				node.direction = node.direction.rotated(-strength * delta)
-				node.speed = node.speed + (node.speed*delta)
+				if node.speed < 1000:
+					node.speed = node.speed + (node.speed*delta)
 			elif node.direction.angle_to(vec_normal) < 0.05:
 				node.direction = node.direction.rotated(strength * delta)
-				node.speed = node.speed + (node.speed*delta)
+				if node.speed < 1000:
+					node.speed = node.speed + (node.speed*delta)
 	else:
 		for node in overlapped:
 			var vec_normal:Vector2 = Vector2(node.global_position - global_position).normalized()
 			if node.direction.angle_to(vec_normal) > 0.05:
 				node.direction = node.direction.rotated(strength * delta)
-				node.speed = node.speed + (node.speed*delta)
+				if node.speed < 1000:
+					node.speed = node.speed + (node.speed*delta)
 			elif node.direction.angle_to(vec_normal) < 0.05:
 				node.direction = node.direction.rotated(-strength * delta)
-				node.speed = node.speed + (node.speed*delta)
+				if node.speed < 1000:
+					node.speed = node.speed + (node.speed*delta)

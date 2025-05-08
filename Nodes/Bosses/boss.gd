@@ -1,6 +1,7 @@
 class_name Boss extends Node2D
 
 signal destroyed_by_player(score_to_give:int)
+signal boss_destroyed()
 
 @onready var boss_turret_1: BossTurretSide = $boss_turret_1
 @onready var boss_turret_2: BossTurretSide = $boss_turret_2
@@ -8,7 +9,7 @@ signal destroyed_by_player(score_to_give:int)
 @onready var boss_animations: AnimationPlayer = $boss_animations
 
 var spawn_pos :Vector2 = Vector2(0.0 , -550)
-var target_pos :Vector2 = Vector2(0.0 , -210)
+var target_pos :Vector2 = Vector2(0.0 , -250)
 var active :bool = false
 var dead :bool = false
 var score_value = 1000
@@ -39,3 +40,4 @@ func destroy():
 	Gf.screen_shake_for_duration(8.0,2.0,10.0)
 	boss_animations.play("boss_death_animation")
 	destroyed_by_player.emit(score_value)
+	boss_destroyed.emit()

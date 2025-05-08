@@ -7,6 +7,7 @@ class_name BulletBase extends Node2D
 @onready var bullet_sprite: Sprite2D = $bullet_sprite
 @onready var bullet_trail_particle: BulletTrailParticle = $bullet_sprite/bullet_trail_particle
 @onready var bullet_auto_cleanup_timer: Timer = $bullet_auto_cleanup_timer
+@onready var bullet_hitbox: HitBox = $bullet_hitbox
 
 var direction:Vector2 = Vector2(1.0,0.0)
 
