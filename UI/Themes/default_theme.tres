@@ -1,3 +1,6 @@
-[gd_resource type="Theme" format=3 uid="uid://cq4u5vnanphuv"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cq4u5vnanphuv"]
+
+[ext_resource type="FontVariation" uid="uid://j8dfv4nurj05" path="res://Fonts/plat_var.tres" id="1_8yjr6"]
 
 [resource]
+default_font = ExtResource("1_8yjr6")

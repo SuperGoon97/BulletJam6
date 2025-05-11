@@ -30,10 +30,13 @@ enum BT {
 	STATIC,
 	CAROUSEL,
 }
+
+var in_game : bool = false
 var game_manager :GameManager :
 	get:
 		return game_manager
 	set(input):
 		game_manager = input
 		Gf.game_manager = game_manager
+		in_game = true
 		print("Game manager loaded")

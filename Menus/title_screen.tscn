@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://jkin4m7hrvyh"]
+
+[ext_resource type="Script" uid="uid://de3264xbu7tp2" path="res://Menus/title_screen.gd" id="1_53cj8"]
+[ext_resource type="PackedScene" uid="uid://c5uequldoiydv" path="res://Backgrounds/parallax_background.tscn" id="1_b0rdp"]
+[ext_resource type="PackedScene" uid="uid://d0nyb0ju87drb" path="res://Menus/ui_menu.tscn" id="2_d8fdh"]
+[ext_resource type="PackedScene" uid="uid://dydpaa0pq14m6" path="res://Materials/PostProcessing/post_processing.tscn" id="3_nmy6u"]
+
+[node name="title_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_53cj8")
+
+[node name="parallax_background" parent="." instance=ExtResource("1_b0rdp")]
+offset = Vector2(400, 400)
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 400, 400)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ui_menu" parent="." instance=ExtResource("2_d8fdh")]
+layout_mode = 1
+offset_left = -640.0
+offset_top = -360.0
+offset_right = -640.0
+offset_bottom = -360.0
+
+[node name="post_processing" parent="." instance=ExtResource("3_nmy6u")]

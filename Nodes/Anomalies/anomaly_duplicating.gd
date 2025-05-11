@@ -18,8 +18,14 @@ func duplicate_object(node:Node2D):
 			new_enemy.direction = (-enemy.direction)
 	elif node.is_in_group("bullet"):
 		var bullet:BulletBase = node
+		var new_bullet
+		if bullet is StaticBullet:
+			return
+		if bullet is CarouselBullet:
+			new_bullet = bullet.duplicate(8)
+		else:
+			new_bullet = bullet.duplicate()
 		var bullet_parent = bullet.get_parent()
-		var new_bullet = bullet.duplicate()
 		bullet_parent.call_deferred("add_child",new_bullet)
 		new_bullet.set_deferred("global_position",bullet.global_position)
 		var dir = bullet.direction
@@ -32,4 +38,3 @@ func _on_anamoly_event_timeout() -> void:
 		if area is HitBox:
 			var parent_node = area.owner_root_node
 			duplicate_object(parent_node)
-	pass # Replace with function body.

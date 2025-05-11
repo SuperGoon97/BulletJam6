@@ -1,0 +1,163 @@
+[gd_scene load_steps=12 format=3 uid="uid://fa2f4eol7cdk"]
+
+[ext_resource type="Texture2D" uid="uid://bm4yhqvr4ypa5" path="res://Sprites/UI/ui_window.png" id="1_a1xdd"]
+[ext_resource type="Script" uid="uid://c556m7f7s5ex8" path="res://UI/ui_controls.gd" id="1_meyur"]
+[ext_resource type="PackedScene" uid="uid://cq1tvbnhynxs7" path="res://UI/ui_custom_button.tscn" id="2_6qfyt"]
+[ext_resource type="Texture2D" uid="uid://mlqw0li1np0w" path="res://Sprites/PlayerShips/PlayerBlue_Frame_01_png_processed.png" id="3_meyur"]
+[ext_resource type="Texture2D" uid="uid://bh2vw5dw0yfj5" path="res://Sprites/UI/at_right.tres" id="4_oip8w"]
+[ext_resource type="Texture2D" uid="uid://dhaimy2746dwo" path="res://Sprites/UI/at_left.tres" id="5_8a1m1"]
+[ext_resource type="Texture2D" uid="uid://bd7cv0lg1ijr7" path="res://Sprites/UI/at_up.tres" id="6_qy51o"]
+[ext_resource type="Texture2D" uid="uid://cwxardi3e1pub" path="res://Sprites/UI/at_down.tres" id="7_q2bys"]
+[ext_resource type="Theme" uid="uid://cq4u5vnanphuv" path="res://UI/Themes/default_theme.tres" id="8_dl4fw"]
+[ext_resource type="Theme" uid="uid://da4xj7p4hdpwv" path="res://UI/Themes/over_theme.tres" id="9_6qfyt"]
+[ext_resource type="PackedScene" uid="uid://cmtjjeif550t7" path="res://ParticleEffects/bullet_tail_particle.tscn" id="9_7rxff"]
+
+[node name="ui_controls" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_meyur")
+
+[node name="backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.063, 0.071, 0.11, 0.4)
+
+[node name="ui_texrect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -231.0
+offset_right = 196.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(33, 40)
+texture = ExtResource("1_a1xdd")
+region_rect = Rect2(0, 0, 66, 80)
+patch_margin_left = 22
+patch_margin_top = 12
+patch_margin_right = 22
+patch_margin_bottom = 12
+
+[node name="ui_custom_button" parent="ui_texrect" instance=ExtResource("2_6qfyt")]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+offset_left = 171.0
+offset_top = 345.0
+offset_right = -160.335
+offset_bottom = -35.885
+text_color = Color(1, 1, 1, 1)
+button_text = "BACK"
+
+[node name="ui_player" type="TextureRect" parent="ui_texrect"]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 134.0
+offset_right = 249.0
+offset_bottom = 198.0
+texture = ExtResource("3_meyur")
+
+[node name="ui_r" type="TextureRect" parent="ui_texrect"]
+offset_left = 262.0
+offset_top = 137.0
+offset_right = 326.0
+offset_bottom = 201.0
+texture = ExtResource("4_oip8w")
+
+[node name="ui_l" type="TextureRect" parent="ui_texrect"]
+offset_left = 107.0
+offset_top = 137.0
+offset_right = 171.0
+offset_bottom = 201.0
+texture = ExtResource("5_8a1m1")
+
+[node name="ui_u" type="TextureRect" parent="ui_texrect"]
+offset_left = 185.0
+offset_top = 65.0
+offset_right = 249.0
+offset_bottom = 129.0
+texture = ExtResource("6_qy51o")
+
+[node name="ui_u2" type="TextureRect" parent="ui_texrect"]
+offset_left = 185.0
+offset_top = 202.0
+offset_right = 249.0
+offset_bottom = 266.0
+texture = ExtResource("7_q2bys")
+
+[node name="ui_label_1" type="Label" parent="ui_texrect"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 23.0
+offset_right = 367.0
+offset_bottom = 73.0
+theme = ExtResource("8_dl4fw")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 23
+text = "CONTROLS"
+
+[node name="ui_label_1" type="Label" parent="ui_texrect/ui_label_1"]
+offset_left = 156.0
+offset_top = 67.0
+offset_right = 171.0
+offset_bottom = 90.0
+theme = ExtResource("9_6qfyt")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "W"
+
+[node name="ui_label_2" type="Label" parent="ui_texrect/ui_label_1"]
+offset_left = 233.0
+offset_top = 137.0
+offset_right = 248.0
+offset_bottom = 160.0
+theme = ExtResource("9_6qfyt")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "D"
+
+[node name="ui_label_3" type="Label" parent="ui_texrect/ui_label_1"]
+offset_left = 157.0
+offset_top = 208.0
+offset_right = 172.0
+offset_bottom = 231.0
+theme = ExtResource("9_6qfyt")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "S"
+
+[node name="ui_label_4" type="Label" parent="ui_texrect/ui_label_1"]
+offset_left = 83.0
+offset_top = 138.0
+offset_right = 98.0
+offset_bottom = 161.0
+theme = ExtResource("9_6qfyt")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "A"
+
+[node name="ui_label_5" type="Label" parent="ui_texrect/ui_label_1"]
+offset_left = 73.0
+offset_top = 281.0
+offset_right = 250.0
+offset_bottom = 304.0
+theme = ExtResource("9_6qfyt")
+theme_override_font_sizes/font_size = 14
+text = "SPACEBAR - SHOOT"
+
+[node name="bullet_trail_particle" parent="." instance=ExtResource("9_7rxff")]
+position = Vector2(633, 424)
+
+[connection signal="clicked" from="ui_texrect/ui_custom_button" to="." method="_on_ui_custom_button_clicked"]

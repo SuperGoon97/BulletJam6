@@ -24,4 +24,5 @@ func create_carousel():
 
 func push_out_carousel(alpha:float):
 	for b in bullet_array:
-		b.position =  b.direction * lerpf(0.0,100.0,alpha)
+		if b && b.is_queued_for_deletion() == false:
+			b.position =  b.direction * lerpf(0.0,100.0,alpha)
