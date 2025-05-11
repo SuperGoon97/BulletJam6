@@ -8,6 +8,8 @@ const UI_MANAGER = preload("res://Nodes/Mangers/ui_manager.tscn")
 const WAVE_MANAGER = preload("res://Nodes/Mangers/wave_manager.tscn")
 const MAIN_CAMERA = preload("res://Nodes/Cameras/main_camera.tscn")
 
+const FADING_SCREEN = preload("res://Nodes/fading_screen.tscn")
+
 var bullet_manager :BulletManager
 var ui_manager :UiManager
 var wave_manager :WaveManager
@@ -35,6 +37,7 @@ func create_managers():
 	wave_manager = WAVE_MANAGER.instantiate()
 	wave_manager.is_ready.connect(manager_ready)
 	wave_manager.enemy_created.connect(bind_to_enemy_death)
+	wave_manager.boss_defeated.connect(end_game)
 	add_child(wave_manager)
 	ui_manager = UI_MANAGER.instantiate()
 	ui_manager.is_ready.connect(manager_ready)
@@ -64,3 +67,10 @@ func bind_to_enemy_death(enemy:Enemy):
 func change_score(value:int):
 	current_score += value
 	score_changed.emit(current_score)
+
+func end_game():
+	var fade_screen:FadingScreen = FADING_SCREEN.instantiate()
+	ui_manager.add_child.call_deferred(fade_screen)
+	await fade_screen.complete
+	print("game over")
+	pass

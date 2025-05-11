@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq1tvbnhynxs7"]
+
+[ext_resource type="Script" uid="uid://cwhfug0gbt8bd" path="res://UI/ui_custom_button.gd" id="1_4oknx"]
+[ext_resource type="Texture2D" uid="uid://cw7e45of2abic" path="res://Sprites/UI/button_up.png" id="2_e1usm"]
+[ext_resource type="Texture2D" uid="uid://blpml6uw1q3fe" path="res://Sprites/UI/button_down.png" id="3_pngap"]
+[ext_resource type="Theme" uid="uid://da4xj7p4hdpwv" path="res://UI/Themes/over_theme.tres" id="4_e1usm"]
+[ext_resource type="Theme" uid="uid://duivpxbtclgmu" path="res://UI/Themes/under_theme.tres" id="4_pngap"]
+
+[node name="ui_custom_button" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1260.0
+offset_bottom = -700.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4oknx")
+button_color = Color(0.219608, 0.34902, 0.701961, 1)
+
+[node name="tex_button_up" type="NinePatchRect" parent="."]
+self_modulate = Color(0.219608, 0.34902, 0.701961, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e1usm")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 5
+
+[node name="tex_button_down" type="NinePatchRect" parent="."]
+visible = false
+self_modulate = Color(0.197647, 0.314118, 0.631765, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_pngap")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 3
+patch_margin_top = 4
+patch_margin_right = 3
+patch_margin_bottom = 5
+
+[node name="text_control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="text_under" type="Label" parent="text_control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_pngap")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "TEST"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="text" type="Label" parent="text_control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_e1usm")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "TEST"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://eu5eo44uqjs1"]
+
+[ext_resource type="Script" uid="uid://cpkip2c1istyq" path="res://Nodes/fading_screen.gd" id="1_v1xp0"]
+[ext_resource type="Theme" uid="uid://cq4u5vnanphuv" path="res://UI/Themes/default_theme.tres" id="2_vxk1d"]
+[ext_resource type="PackedScene" uid="uid://cq1tvbnhynxs7" path="res://UI/ui_custom_button.tscn" id="3_ko5bx"]
+
+[node name="fading_screen" type="ColorRect"]
+top_level = true
+z_index = 10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = -640.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.063, 0.071, 0.11, 0)
+script = ExtResource("1_v1xp0")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -13.0
+offset_right = 83.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(83, 13)
+theme = ExtResource("2_vxk1d")
+theme_override_font_sizes/font_size = 64
+text = "YOU WIN"
+
+[node name="menu_button" parent="." instance=ExtResource("3_ko5bx")]
+visible = false
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+offset_left = 540.0
+offset_top = 539.0
+offset_right = -540.0
+offset_bottom = -131.0
+button_text = "MENU"
+
+[node name="exit_button" parent="." instance=ExtResource("3_ko5bx")]
+visible = false
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+offset_left = 541.0
+offset_top = 640.0
+offset_right = -539.0
+offset_bottom = -30.0
+button_text = "EXIT"
+
+[connection signal="clicked" from="menu_button" to="." method="_on_menu_button_clicked"]
+[connection signal="clicked" from="exit_button" to="." method="_on_exit_button_clicked"]

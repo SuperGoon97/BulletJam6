@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2d11lmvdkl7h"]
+
+[ext_resource type="Script" uid="uid://cdaccxri62xgm" path="res://buttons_control.gd" id="1_4v3lc"]
+[ext_resource type="PackedScene" uid="uid://cq1tvbnhynxs7" path="res://UI/ui_custom_button.tscn" id="1_ttmeh"]
+
+[node name="buttons_control" type="VBoxContainer"]
+size_flags_vertical = 3
+script = ExtResource("1_4v3lc")
+
+[node name="play_button" parent="." instance=ExtResource("1_ttmeh")]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+button_text = "PLAY"
+
+[node name="controls_button" parent="." instance=ExtResource("1_ttmeh")]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+button_text = "CONTROLS"
+
+[node name="exit_button" parent="." instance=ExtResource("1_ttmeh")]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+button_text = "EXIT"
+
+[connection signal="clicked" from="play_button" to="." method="_on_play_button_clicked"]
+[connection signal="clicked" from="controls_button" to="." method="_on_controls_button_clicked"]
+[connection signal="clicked" from="exit_button" to="." method="_on_exit_button_clicked"]

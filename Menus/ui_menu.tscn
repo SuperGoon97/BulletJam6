@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0nyb0ju87drb"]
+
+[ext_resource type="Theme" uid="uid://da4xj7p4hdpwv" path="res://UI/Themes/over_theme.tres" id="1_x0wtv"]
+[ext_resource type="PackedScene" uid="uid://c2d11lmvdkl7h" path="res://buttons_control.tscn" id="2_x0wtv"]
+
+[node name="ui_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="v_box" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ui_title" type="Label" parent="v_box"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_x0wtv")
+text = "MATT AND JAMES GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buttons_control" parent="v_box" instance=ExtResource("2_x0wtv")]
+layout_mode = 2

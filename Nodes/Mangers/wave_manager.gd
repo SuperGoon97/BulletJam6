@@ -2,6 +2,7 @@ class_name WaveManager extends Node2D
 signal is_ready (input:String)
 signal enemy_created(enemy:Enemy)
 signal wave_spawn_finished()
+signal boss_defeated()
 
 const WAVE_NODE = preload("res://Nodes/Waves/wave_node.tscn")
 
@@ -65,14 +66,16 @@ func spawn_anomaly_at(anomaly:PackedScene,location:int,direction:Vector2,speed:f
 
 func run_waves():
 	wave_manager_anim_player.play("stage_one")
-	#wave_manager_anim_player.play_section("stage_one" , 120)
 	
 func spawn_boss(boss:PackedScene):
 	var new_boss :Boss = boss.instantiate()
 	new_boss.position = new_boss.spawn_pos
 	add_child(new_boss)
+	new_boss.boss_destroyed.connect(boss_destroyed)
 	print ("Boss Spanwed")
 
+func boss_destroyed():
+	boss_defeated.emit()
 ## This means the stage or boss is finished
 func _on_wave_manager_anim_player_animation_finished(anim_name: StringName) -> void:
 	pass # Replace with function body.
