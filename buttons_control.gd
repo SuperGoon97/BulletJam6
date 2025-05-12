@@ -13,6 +13,7 @@ func _on_play_button_clicked() -> void:
 		get_tree().change_scene_to_file("res://Levels/level_test.tscn")
 	else:
 		get_parent().queue_free()
+		get_tree().paused = false
 	pass # Replace with function body.
 
 

@@ -20,10 +20,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ui_title" type="Label" parent="v_box"]
+z_index = 10
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_x0wtv")
-text = "MATT AND JAMES GAME"
+text = "STORM BULLET STRATOSPHERE"
 horizontal_alignment = 1
 vertical_alignment = 1
 

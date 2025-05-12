@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://duivpxbtclgmu" path="res://UI/Themes/under_theme.tres" id="4_pngap"]
 
 [node name="ui_custom_button" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

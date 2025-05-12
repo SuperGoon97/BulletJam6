@@ -6,6 +6,7 @@ const PLAYER_BLUE_FRAME_03_PNG_PROCESSED = preload("res://Sprites/PlayerShips/Pl
 const PLAYER_BULLET_GRADIENT = preload("res://Resources/player_bullet_gradient.tres")
 
 signal recieved_damage(current_health:int)
+signal player_died()
 
 @export_range(0.0,100.0,0.1,"or_greater") var speed:float = 10.0
 @onready var bullet_spawner: BulletSpawner = $bullet_spawner
@@ -80,6 +81,7 @@ func damage():
 			destroy()
 
 func destroy():
+	player_died.emit()
 	player_death_animation.show()
 	player_death_animation.play()
 	await player_death_animation.animation_finished

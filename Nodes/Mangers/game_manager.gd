@@ -45,6 +45,8 @@ func create_managers():
 	ui_manager.scale = Vector2(1.0/main_camera.zoom.x,1.0/main_camera.zoom.y)
 	ui_manager.position = (Vector2(ui_manager.pivot_offset.x * (1 - main_camera.zoom.x),ui_manager.pivot_offset.y * (1 - main_camera.zoom.y)))
 	main_camera.add_child(ui_manager)
+	var player:Player = get_tree().get_first_node_in_group("Player")
+	player.player_died.connect(player_died)
 
 func create_camera():
 	main_camera = MAIN_CAMERA.instantiate()
@@ -59,6 +61,7 @@ func check_loading_state():
 	while manager_dict.values().all(Gf.equal_true) == false:
 		await get_tree().process_frame
 	game_ready.emit()
+	get_tree().paused = false
 	print("Game ready")
 
 func bind_to_enemy_death(enemy:Enemy):
@@ -68,9 +71,16 @@ func change_score(value:int):
 	current_score += value
 	score_changed.emit(current_score)
 
-func end_game():
+func end_game(is_win:bool = true):
 	var fade_screen:FadingScreen = FADING_SCREEN.instantiate()
 	ui_manager.add_child.call_deferred(fade_screen)
-	await fade_screen.complete
-	print("game over")
+	if is_win:
+		await fade_screen.complete
+	else:
+		fade_screen.set_deferred("label_text","YOU LOSE")
+		await fade_screen.complete
+	pass
+
+func player_died():
+	end_game(false)
 	pass

@@ -17,10 +17,11 @@ func _ready() -> void:
 func shake(strength:float,fade_strength:float):
 	if shake_for_duration_active == false:
 		current_screen_shake_strength = strength
-		while current_screen_shake_strength > 0.0:
+		while current_screen_shake_strength > 0.1:
 			offset = random_offset()
 			current_screen_shake_strength = lerpf(current_screen_shake_strength,0.0,fade_strength * get_process_delta_time())
 			await get_tree().process_frame
+		offset = Vector2(0.0,0.0)
 
 func shake_for_duration(strength:float,fade_strength:float,duration:float):
 	d_fade_strength = 0.0

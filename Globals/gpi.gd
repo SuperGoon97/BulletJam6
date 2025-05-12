@@ -16,3 +16,4 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("ui_cancel"):
 		if Gv.in_game:
 			get_tree().get_first_node_in_group("level").add_child(UI_MENU.instantiate())
+			get_tree().paused = true

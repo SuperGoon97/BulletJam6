@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cq1tvbnhynxs7" path="res://UI/ui_custom_button.tscn" id="1_ttmeh"]
 
 [node name="buttons_control" type="VBoxContainer"]
+process_mode = 3
 size_flags_vertical = 3
 script = ExtResource("1_4v3lc")
 
